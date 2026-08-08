@@ -1,7 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CartDrawer = ({ isOpen, onClose, cartItems = [], onIncrease, onDecrease, onRemove }) => {
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
+  const navigate = useNavigate(); // Hook for programmatic navigation
+  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  const handleGoToCheckout = () => {
+    onClose(); // Close the drawer
+    navigate('/checkout'); // Route to /checkout page
+  };
 
   return (
     <>
@@ -11,6 +18,7 @@ const CartDrawer = ({ isOpen, onClose, cartItems = [], onIncrease, onDecrease, o
           <h2>Your Cart ({cartItems.length})</h2>
           <button className="cart-close" onClick={onClose}>✕</button>
         </div>
+        
         <div className="cart-items">
           {cartItems.length === 0 && <p className="cart-empty">Your cart is empty.</p>}
           {cartItems.map((item) => (
@@ -31,18 +39,21 @@ const CartDrawer = ({ isOpen, onClose, cartItems = [], onIncrease, onDecrease, o
             </div>
           ))}
         </div>
+
         {cartItems.length > 0 && (
           <div className="cart-footer">
             <div className="cart-subtotal">
               <span>Subtotal</span>
               <span>${subtotal.toFixed(2)}</span>
             </div>
-            <button className="cart-checkout">Go to Checkout</button>
+            <button className="cart-checkout" onClick={handleGoToCheckout}>
+              Go to Checkout
+            </button>
           </div>
         )}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default CartDrawer
+export default CartDrawer;

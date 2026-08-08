@@ -3,7 +3,7 @@ import './App.css'
 import Product from "./components/productHomePage/product.jsx"
 import Signup from "./components/auth/signup/SignUp.jsx"
 import Login from "./components/auth/login/Login.jsx"
-
+import Checkout from "./components/checkout/checkout.jsx"
 
 function App() {
   return (
@@ -12,6 +12,7 @@ function App() {
         <Route path="/" element={<Product />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </Router>
   )
