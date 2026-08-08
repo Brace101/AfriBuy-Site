@@ -1,7 +1,14 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-primary: #8c323f;
+  --color-brand-secondary: #a26d65;
+  --color-brand-light: #c29896;
+  --color-brand-tint: #f8f1f1;
+}
+
 .flyer{
-    @apply bg-black text-white text-xs md:text-sm flex items-center min-h-10 relative px-2 py-2;
+    @apply bg-[var(--color-brand-primary)] text-white text-xs md:text-sm flex items-center min-h-10 relative px-2 py-2;
 }
 
 .signup{
@@ -9,11 +16,11 @@
 }
 
 .signup a{
-    @apply underline ml-1;
+    @apply underline ml-1 hover:text-[var(--color-brand-light)];
 }
 
 .close{
-    @apply absolute right-2 top-1/2 -translate-y-1/2 px-2 cursor-pointer hover:text-gray-300;
+    @apply absolute right-2 top-1/2 -translate-y-1/2 px-2 cursor-pointer hover:text-gray-200;
 }
 
 .navbar{
@@ -21,7 +28,7 @@
 }
 
 .logo h1{
-    @apply text-xl md:text-2xl font-black tracking-tight;
+    @apply text-xl md:text-2xl font-black tracking-tight text-[var(--color-brand-primary)];
 }
 
 .nav-links{
@@ -29,7 +36,7 @@
 }
 
 .nav-links li{
-    @apply hover:text-gray-600 transition-colors;
+    @apply hover:text-[var(--color-brand-secondary)] transition-colors;
 }
 
 .caret{
@@ -37,7 +44,7 @@
 }
 
 .search-wrap{
-    @apply order-3 md:order-none w-full md:flex-1 md:max-w-xl relative flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2;
+    @apply order-3 md:order-none w-full md:flex-1 md:max-w-xl relative flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2 focus-within:ring-2 focus-within:ring-[var(--color-brand-secondary)];
 }
 
 .search-wrap input{
@@ -53,7 +60,7 @@
 }
 
 .search-result{
-    @apply flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-50 border-b border-gray-100 last:border-b-0;
+    @apply flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-[var(--color-brand-tint)] border-b border-gray-100 last:border-b-0;
 }
 
 .search-result-image{
@@ -73,15 +80,15 @@
 }
 
 .search-result-price{
-    @apply text-xs text-gray-500;
+    @apply text-xs text-[var(--color-brand-primary)] font-semibold;
 }
 
 .nav-icons{
-    @apply order-2 md:order-none flex items-center gap-4 text-xl ml-auto md:ml-0;
+    @apply order-2 md:order-none flex items-center gap-4 text-xl ml-auto md:ml-0 text-[var(--color-brand-primary)];
 }
 
 .hero{
-    @apply bg-gray-100 flex flex-col md:flex-row items-center justify-between px-4 md:px-8 py-10 md:py-12 gap-8 md:gap-6 relative overflow-hidden text-center md:text-left;
+    @apply bg-[var(--color-brand-tint)] flex flex-col md:flex-row items-center justify-between px-4 md:px-8 py-10 md:py-12 gap-8 md:gap-6 relative overflow-hidden text-center md:text-left;
 }
 
 .hero-text{
@@ -89,7 +96,7 @@
 }
 
 .hero-text h1{
-    @apply text-3xl sm:text-4xl md:text-5xl font-black leading-tight mb-4;
+    @apply text-3xl sm:text-4xl md:text-5xl font-black leading-tight mb-4 text-[var(--color-brand-primary)];
 }
 
 .hero-text p{
@@ -97,7 +104,7 @@
 }
 
 .shop-now{
-    @apply bg-black text-white rounded-full px-10 py-3 mb-8 cursor-pointer;
+    @apply bg-[var(--color-brand-primary)] text-white rounded-full px-10 py-3 mb-8 cursor-pointer hover:bg-[var(--color-brand-secondary)] transition-colors;
 }
 
 .stats{
@@ -113,7 +120,7 @@
 }
 
 .stat h2{
-    @apply text-xl md:text-2xl font-black;
+    @apply text-xl md:text-2xl font-black text-[var(--color-brand-primary)];
 }
 
 .stat p{
@@ -129,7 +136,7 @@
 }
 
 .sparkle{
-    @apply hidden sm:block absolute text-4xl;
+    @apply hidden sm:block absolute text-4xl text-[var(--color-brand-secondary)];
 }
 
 .sparkle-1{
@@ -141,7 +148,7 @@
 }
 
 .brands{
-    @apply bg-black text-white flex items-center justify-around px-4 md:px-8 py-6 md:py-8 flex-wrap gap-4 text-sm md:text-xl font-semibold;
+    @apply bg-[var(--color-brand-primary)] text-white flex items-center justify-around px-4 md:px-8 py-6 md:py-8 flex-wrap gap-4 text-sm md:text-xl font-semibold;
 }
 
 .product-section{
@@ -153,7 +160,7 @@
 }
 
 .section-title{
-    @apply text-2xl sm:text-3xl md:text-4xl font-black mb-6 md:mb-10 text-center;
+    @apply text-2xl sm:text-3xl md:text-4xl font-black mb-6 md:mb-10 text-center text-gray-900;
 }
 
 .section-title.left{
@@ -189,11 +196,11 @@
 }
 
 .star.filled{
-    @apply text-yellow-400;
+    @apply text-[var(--color-brand-secondary)];
 }
 
 .star.half{
-    @apply text-yellow-400;
+    @apply text-[var(--color-brand-secondary)];
     opacity: 0.6;
 }
 
@@ -206,7 +213,7 @@
 }
 
 .price{
-    @apply font-bold text-base md:text-lg;
+    @apply font-bold text-base md:text-lg text-[var(--color-brand-primary)];
 }
 
 .original-price{
@@ -214,15 +221,15 @@
 }
 
 .discount-badge{
-    @apply bg-red-100 text-red-500 text-xs px-2 py-0.5 rounded-full;
+    @apply bg-[var(--color-brand-tint)] text-[var(--color-brand-primary)] text-xs px-2 py-0.5 rounded-full font-medium;
 }
 
 .view-all{
-    @apply border border-gray-300 rounded-full px-6 md:px-10 py-2.5 md:py-3 text-sm md:text-base cursor-pointer font-medium hover:bg-gray-50;
+    @apply border border-[var(--color-brand-primary)] text-[var(--color-brand-primary)] rounded-full px-6 md:px-10 py-2.5 md:py-3 text-sm md:text-base cursor-pointer font-medium hover:bg-[var(--color-brand-primary)] hover:text-white transition-colors;
 }
 
 .add-to-cart{
-    @apply mt-3 bg-black text-white text-xs md:text-sm rounded-full py-2 md:py-2.5 cursor-pointer hover:bg-gray-800 transition-colors;
+    @apply mt-3 bg-[var(--color-brand-primary)] text-white text-xs md:text-sm rounded-full py-2 md:py-2.5 cursor-pointer hover:bg-[var(--color-brand-secondary)] transition-colors;
 }
 
 .cart-icon-btn{
@@ -230,7 +237,7 @@
 }
 
 .cart-badge{
-    @apply absolute -top-2 -right-2 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center;
+    @apply absolute -top-2 -right-2 bg-[var(--color-brand-secondary)] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold;
 }
 
 .dress-style-section{
@@ -238,7 +245,7 @@
 }
 
 .dress-style-panel{
-    @apply bg-gray-100 rounded-3xl p-5 md:p-10;
+    @apply bg-[var(--color-brand-tint)] rounded-3xl p-5 md:p-10;
 }
 
 .style-grid{
@@ -250,7 +257,7 @@
 }
 
 .style-name{
-    @apply absolute top-4 left-4 md:top-6 md:left-6 text-xl md:text-2xl font-bold z-10;
+    @apply absolute top-4 left-4 md:top-6 md:left-6 text-xl md:text-2xl font-bold z-10 text-[var(--color-brand-primary)];
 }
 
 .style-card img{
@@ -270,7 +277,7 @@
 }
 
 .carousel-btn{
-    @apply w-9 h-9 flex items-center justify-center rounded-full border border-gray-300 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed;
+    @apply w-9 h-9 flex items-center justify-center rounded-full border border-[var(--color-brand-primary)] text-[var(--color-brand-primary)] cursor-pointer hover:bg-[var(--color-brand-primary)] hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed;
 }
 
 .testimonials-grid{
@@ -278,7 +285,7 @@
 }
 
 .testimonial-card{
-    @apply border border-gray-200 rounded-xl p-5;
+    @apply border border-gray-200 rounded-xl p-5 hover:border-[var(--color-brand-secondary)] transition-colors;
 }
 
 .testimonial-name{
@@ -286,7 +293,7 @@
 }
 
 .verified-badge{
-    @apply bg-green-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center;
+    @apply bg-[var(--color-brand-primary)] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center;
 }
 
 .testimonial-text{
@@ -294,7 +301,7 @@
 }
 
 .newsletter{
-    @apply mx-4 md:mx-8 my-6 bg-black text-white rounded-2xl px-6 md:px-10 py-8 md:py-10 flex flex-col md:flex-row items-center justify-between flex-wrap gap-6 text-center md:text-left;
+    @apply mx-4 md:mx-8 my-6 bg-[var(--color-brand-primary)] text-white rounded-2xl px-6 md:px-10 py-8 md:py-10 flex flex-col md:flex-row items-center justify-between flex-wrap gap-6 text-center md:text-left;
 }
 
 .newsletter-title{
@@ -314,11 +321,11 @@
 }
 
 .mail-icon{
-    @apply text-gray-400;
+    @apply text-[var(--color-brand-primary)];
 }
 
 .subscribe-btn{
-    @apply bg-white text-black rounded-full py-2.5 font-medium cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed;
+    @apply bg-[var(--color-brand-secondary)] text-white rounded-full py-2.5 font-medium cursor-pointer hover:brightness-110 transition-all disabled:opacity-40 disabled:cursor-not-allowed;
 }
 
 .newsletter-message{
@@ -326,11 +333,11 @@
 }
 
 .newsletter-message.success{
-    @apply text-green-400;
+    @apply text-emerald-300;
 }
 
 .newsletter-message.error{
-    @apply text-red-400;
+    @apply text-rose-200;
 }
 
 .footer{
@@ -346,7 +353,7 @@
 }
 
 .footer-brand h2{
-    @apply text-xl md:text-2xl font-black mb-3;
+    @apply text-xl md:text-2xl font-black mb-3 text-[var(--color-brand-primary)];
 }
 
 .footer-brand p{
@@ -358,11 +365,11 @@
 }
 
 .social-icons span{
-    @apply w-8 h-8 rounded-full bg-black text-white flex items-center justify-center text-xs cursor-pointer;
+    @apply w-8 h-8 rounded-full bg-[var(--color-brand-primary)] text-white flex items-center justify-center text-xs cursor-pointer hover:bg-[var(--color-brand-secondary)] transition-colors;
 }
 
 .footer-column h3{
-    @apply text-xs font-bold tracking-wide mb-4;
+    @apply text-xs font-bold tracking-wide mb-4 text-gray-800;
 }
 
 .footer-column ul{
@@ -370,7 +377,7 @@
 }
 
 .footer-column a{
-    @apply text-sm text-gray-500 hover:text-black;
+    @apply text-sm text-gray-500 hover:text-[var(--color-brand-primary)] transition-colors;
 }
 
 .footer-bottom{
@@ -408,11 +415,11 @@
 }
 
 .cart-header h2{
-    @apply text-base md:text-lg font-bold;
+    @apply text-base md:text-lg font-bold text-[var(--color-brand-primary)];
 }
 
 .cart-close{
-    @apply text-xl cursor-pointer bg-transparent border-none;
+    @apply text-xl cursor-pointer bg-transparent border-none hover:text-[var(--color-brand-secondary)];
 }
 
 .cart-items{
@@ -444,7 +451,7 @@
 }
 
 .cart-item-price{
-    @apply text-sm text-gray-600 mb-2;
+    @apply text-sm text-[var(--color-brand-primary)] font-semibold mb-2;
 }
 
 .cart-qty-controls{
@@ -452,7 +459,7 @@
 }
 
 .cart-qty-controls button{
-    @apply w-6 h-6 flex items-center justify-center rounded-full border border-gray-300 cursor-pointer text-sm;
+    @apply w-6 h-6 flex items-center justify-center rounded-full border border-gray-300 cursor-pointer text-sm hover:border-[var(--color-brand-primary)] hover:text-[var(--color-brand-primary)];
 }
 
 .cart-qty-controls span{
@@ -472,5 +479,5 @@
 }
 
 .cart-checkout{
-    @apply w-full bg-black text-white rounded-full py-3 font-medium cursor-pointer hover:bg-gray-800 transition-colors;
+    @apply w-full bg-[var(--color-brand-primary)] text-white rounded-full py-3 font-medium cursor-pointer hover:bg-[var(--color-brand-secondary)] transition-colors;
 }
