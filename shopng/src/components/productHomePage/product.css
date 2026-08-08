@@ -20,10 +20,6 @@
     @apply bg-white flex flex-wrap items-center justify-between px-4 md:px-8 py-4 gap-3 md:gap-8;
 }
 
-.logo{
-    @apply order-1;
-}
-
 .logo h1{
     @apply text-xl md:text-2xl font-black tracking-tight;
 }
