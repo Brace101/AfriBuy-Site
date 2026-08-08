@@ -11,6 +11,7 @@ import { mapApiProduct } from '../../utils/mapApiProduct'
 import './product.css'
 import { Link } from 'react-router-dom'
 
+
 const Product = () => {
   const [newArrivals, setNewArrivals] = useState([])
   const [topSelling, setTopSelling] = useState([])
@@ -35,7 +36,7 @@ const Product = () => {
       }
       return [...prev, { ...product, quantity: 1 }]
     })
-    setIsCartOpen(true)
+    // Drawer no longer auto-opens here — it only opens when the cart icon is clicked.
   }
 
   const handleIncrease = (id) => {

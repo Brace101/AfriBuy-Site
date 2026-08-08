@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 .flyer{
-    @apply bg-black text-white text-sm flex items-center min-h-10 relative px-2;
+    @apply bg-black text-white text-xs md:text-sm flex items-center min-h-10 relative px-2 py-2;
 }
 
 .signup{
-    @apply w-6/12 flex items-center justify-center text-center mx-auto;
+    @apply w-full px-6 md:w-6/12 flex items-center justify-center text-center mx-auto;
 }
 
 .signup a{
@@ -17,15 +17,19 @@
 }
 
 .navbar{
-    @apply bg-white flex items-center justify-between px-8 py-4 gap-8;
+    @apply bg-white flex flex-wrap items-center justify-between px-4 md:px-8 py-4 gap-3 md:gap-8;
+}
+
+.logo{
+    @apply order-1;
 }
 
 .logo h1{
-    @apply text-2xl font-black tracking-tight;
+    @apply text-xl md:text-2xl font-black tracking-tight;
 }
 
 .nav-links{
-    @apply flex items-center gap-6 list-none text-sm cursor-pointer;
+    @apply hidden lg:flex items-center gap-6 list-none text-sm cursor-pointer order-4 lg:order-none w-full lg:w-auto;
 }
 
 .nav-links li{
@@ -37,7 +41,7 @@
 }
 
 .search-wrap{
-    @apply flex-1 max-w-xl relative flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2;
+    @apply order-3 md:order-none w-full md:flex-1 md:max-w-xl relative flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2;
 }
 
 .search-wrap input{
@@ -77,19 +81,19 @@
 }
 
 .nav-icons{
-    @apply flex items-center gap-4 text-xl;
+    @apply order-2 md:order-none flex items-center gap-4 text-xl ml-auto md:ml-0;
 }
 
 .hero{
-    @apply bg-gray-100 flex items-center justify-between px-8 py-12 relative overflow-hidden;
+    @apply bg-gray-100 flex flex-col md:flex-row items-center justify-between px-4 md:px-8 py-10 md:py-12 gap-8 md:gap-6 relative overflow-hidden text-center md:text-left;
 }
 
 .hero-text{
-    @apply max-w-lg;
+    @apply max-w-lg mx-auto md:mx-0 flex flex-col items-center md:items-start;
 }
 
 .hero-text h1{
-    @apply text-5xl font-black leading-tight mb-4;
+    @apply text-3xl sm:text-4xl md:text-5xl font-black leading-tight mb-4;
 }
 
 .hero-text p{
@@ -101,7 +105,7 @@
 }
 
 .stats{
-    @apply flex gap-6;
+    @apply flex flex-wrap justify-center md:justify-start gap-6;
 }
 
 .stat{
@@ -113,7 +117,7 @@
 }
 
 .stat h2{
-    @apply text-2xl font-black;
+    @apply text-xl md:text-2xl font-black;
 }
 
 .stat p{
@@ -121,15 +125,15 @@
 }
 
 .hero-image{
-    @apply relative;
+    @apply relative w-full md:w-auto;
 }
 
 .hero-image img{
-    @apply max-h-[500px] object-contain;
+    @apply max-h-[260px] sm:max-h-[360px] md:max-h-[500px] w-full md:w-auto object-contain mx-auto;
 }
 
 .sparkle{
-    @apply absolute text-4xl;
+    @apply hidden sm:block absolute text-4xl;
 }
 
 .sparkle-1{
@@ -141,11 +145,11 @@
 }
 
 .brands{
-    @apply bg-black text-white flex items-center justify-around px-8 py-8 flex-wrap gap-4 text-xl font-semibold;
+    @apply bg-black text-white flex items-center justify-around px-4 md:px-8 py-6 md:py-8 flex-wrap gap-4 text-sm md:text-xl font-semibold;
 }
 
 .product-section{
-    @apply px-8 py-16 flex flex-col items-center;
+    @apply px-4 md:px-8 py-10 md:py-16 flex flex-col items-center;
 }
 
 .product-section.bordered{
@@ -153,7 +157,7 @@
 }
 
 .section-title{
-    @apply text-4xl font-black mb-10 text-center;
+    @apply text-2xl sm:text-3xl md:text-4xl font-black mb-6 md:mb-10 text-center;
 }
 
 .section-title.left{
@@ -161,7 +165,7 @@
 }
 
 .product-grid{
-    @apply grid grid-cols-4 gap-6 w-full mb-10;
+    @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 w-full mb-10;
 }
 
 .product-card{
@@ -169,7 +173,7 @@
 }
 
 .product-image{
-    @apply bg-gray-100 rounded-2xl overflow-hidden mb-3 aspect-square flex items-center justify-center p-4;
+    @apply bg-gray-100 rounded-2xl overflow-hidden mb-3 aspect-square flex items-center justify-center p-3 md:p-4;
 }
 
 .product-image img{
@@ -177,7 +181,7 @@
 }
 
 .product-name{
-    @apply font-bold text-base mb-1;
+    @apply font-bold text-sm md:text-base mb-1;
 }
 
 .rating{
@@ -202,11 +206,11 @@
 }
 
 .price-row{
-    @apply flex items-center gap-2;
+    @apply flex flex-wrap items-center gap-2;
 }
 
 .price{
-    @apply font-bold text-lg;
+    @apply font-bold text-base md:text-lg;
 }
 
 .original-price{
@@ -218,11 +222,11 @@
 }
 
 .view-all{
-    @apply border border-gray-300 rounded-full px-10 py-3 cursor-pointer font-medium hover:bg-gray-50;
+    @apply border border-gray-300 rounded-full px-6 md:px-10 py-2.5 md:py-3 text-sm md:text-base cursor-pointer font-medium hover:bg-gray-50;
 }
 
 .add-to-cart{
-    @apply mt-3 bg-black text-white text-sm rounded-full py-2.5 cursor-pointer hover:bg-gray-800 transition-colors;
+    @apply mt-3 bg-black text-white text-xs md:text-sm rounded-full py-2 md:py-2.5 cursor-pointer hover:bg-gray-800 transition-colors;
 }
 
 .cart-icon-btn{
@@ -234,23 +238,23 @@
 }
 
 .dress-style-section{
-    @apply px-8 py-12;
+    @apply px-4 md:px-8 py-8 md:py-12;
 }
 
 .dress-style-panel{
-    @apply bg-gray-100 rounded-3xl p-10;
+    @apply bg-gray-100 rounded-3xl p-5 md:p-10;
 }
 
 .style-grid{
-    @apply grid grid-cols-2 gap-5;
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5;
 }
 
 .style-card{
-    @apply relative bg-white rounded-2xl overflow-hidden h-64;
+    @apply relative bg-white rounded-2xl overflow-hidden h-48 md:h-64;
 }
 
 .style-name{
-    @apply absolute top-6 left-6 text-2xl font-bold z-10;
+    @apply absolute top-4 left-4 md:top-6 md:left-6 text-xl md:text-2xl font-bold z-10;
 }
 
 .style-card img{
@@ -258,11 +262,11 @@
 }
 
 .testimonials-section{
-    @apply px-8 py-12 overflow-hidden;
+    @apply px-4 md:px-8 py-8 md:py-12 overflow-hidden;
 }
 
 .testimonials-header{
-    @apply flex items-center justify-between mb-6;
+    @apply flex items-center justify-between mb-6 flex-wrap gap-3;
 }
 
 .carousel-controls{
@@ -274,7 +278,7 @@
 }
 
 .testimonials-grid{
-    @apply grid grid-cols-3 gap-5;
+    @apply grid grid-cols-1 md:grid-cols-3 gap-5;
 }
 
 .testimonial-card{
@@ -294,15 +298,15 @@
 }
 
 .newsletter{
-    @apply mx-8 my-6 bg-black text-white rounded-2xl px-10 py-10 flex items-center justify-between flex-wrap gap-6;
+    @apply mx-4 md:mx-8 my-6 bg-black text-white rounded-2xl px-6 md:px-10 py-8 md:py-10 flex flex-col md:flex-row items-center justify-between flex-wrap gap-6 text-center md:text-left;
 }
 
 .newsletter-title{
-    @apply text-2xl font-black leading-snug;
+    @apply text-xl md:text-2xl font-black leading-snug;
 }
 
 .newsletter-form{
-    @apply flex flex-col gap-3 w-full max-w-sm;
+    @apply flex flex-col gap-3 w-full md:max-w-sm;
 }
 
 .newsletter-input-wrap{
@@ -334,15 +338,19 @@
 }
 
 .footer{
-    @apply bg-gray-100 px-8 pt-12 pb-6;
+    @apply bg-gray-100 px-4 md:px-8 pt-8 md:pt-12 pb-6;
 }
 
 .footer-grid{
-    @apply grid grid-cols-5 gap-8 mb-10;
+    @apply grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8 mb-10;
+}
+
+.footer-brand{
+    @apply col-span-2 md:col-span-1;
 }
 
 .footer-brand h2{
-    @apply text-2xl font-black mb-3;
+    @apply text-xl md:text-2xl font-black mb-3;
 }
 
 .footer-brand p{
@@ -370,7 +378,7 @@
 }
 
 .footer-bottom{
-    @apply flex items-center justify-between border-t border-gray-300 pt-6 flex-wrap gap-4;
+    @apply flex flex-col md:flex-row items-center justify-between border-t border-gray-300 pt-6 flex-wrap gap-4 text-center md:text-left;
 }
 
 .footer-bottom p{
@@ -378,7 +386,7 @@
 }
 
 .payment-icons{
-    @apply flex items-center gap-3 text-xs text-gray-600;
+    @apply flex flex-wrap items-center justify-center gap-3 text-xs text-gray-600;
 }
 
 .cart-overlay{
@@ -400,11 +408,11 @@
 }
 
 .cart-header{
-    @apply flex items-center justify-between px-6 py-5 border-b border-gray-200;
+    @apply flex items-center justify-between px-4 md:px-6 py-4 md:py-5 border-b border-gray-200;
 }
 
 .cart-header h2{
-    @apply text-lg font-bold;
+    @apply text-base md:text-lg font-bold;
 }
 
 .cart-close{
@@ -412,7 +420,7 @@
 }
 
 .cart-items{
-    @apply flex-1 overflow-y-auto px-6 py-4 flex flex-col gap-4;
+    @apply flex-1 overflow-y-auto px-4 md:px-6 py-4 flex flex-col gap-4;
 }
 
 .cart-empty{
@@ -420,11 +428,11 @@
 }
 
 .cart-item{
-    @apply flex items-center gap-4 border-b border-gray-100 pb-4;
+    @apply flex items-center gap-3 md:gap-4 border-b border-gray-100 pb-4;
 }
 
 .cart-item-image{
-    @apply w-16 h-16 bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center flex-shrink-0 p-2;
+    @apply w-14 h-14 md:w-16 md:h-16 bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center flex-shrink-0 p-2;
 }
 
 .cart-item-image img{
@@ -432,11 +440,11 @@
 }
 
 .cart-item-info{
-    @apply flex-1;
+    @apply flex-1 min-w-0;
 }
 
 .cart-item-info h4{
-    @apply text-sm font-semibold mb-1;
+    @apply text-sm font-semibold mb-1 truncate;
 }
 
 .cart-item-price{
@@ -460,7 +468,7 @@
 }
 
 .cart-footer{
-    @apply border-t border-gray-200 px-6 py-5;
+    @apply border-t border-gray-200 px-4 md:px-6 py-4 md:py-5;
 }
 
 .cart-subtotal{
