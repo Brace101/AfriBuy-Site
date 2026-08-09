@@ -75,7 +75,7 @@ const SignUp = () => {
             {/* Right form panel */}
             <div className="signup-right-panel">
                 <div className="signup-form-wrap">
-                    <h1 className="signup-mobile-logo">SHOP.CO</h1>
+                    <h1 className="signup-mobile-logo">AfriBuy</h1>
 
                     <h2 className="signup-title">Create an Account</h2>
                     <p className="signup-subtitle">
