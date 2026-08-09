@@ -70,7 +70,7 @@ const Login = () => {
             {/* Right form panel */}
             <div className="login-right-panel">
                 <div className="login-form-wrap">
-                    <h1 className="login-mobile-logo">SHOP.CO</h1>
+                    <h1 className="login-mobile-logo">AfriBuy</h1>
 
                     <h2 className="login-title">Welcome Back</h2>
                     <p className="login-subtitle">
