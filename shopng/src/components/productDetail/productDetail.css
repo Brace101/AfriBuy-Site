@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #8c323f;
+  --color-brand-secondary: #a26d65;
+  --color-brand-light: #c29896;
+  --color-brand-tint: #f8f1f1;
+}
+
+.pd-status{
+    @apply min-h-[50vh] flex flex-col items-center justify-center gap-4 text-gray-500;
+}
+
+.pd-back-link{
+    @apply text-[var(--color-brand-primary)] font-medium hover:underline;
+}
+
+.pd-topbar{
+    @apply bg-white flex items-center justify-between px-4 md:px-8 py-4 border-b border-gray-200;
+}
+
+.pd-logo{
+    @apply text-xl md:text-2xl font-black tracking-tight text-[var(--color-brand-primary)] no-underline;
+}
+
+.pd-back{
+    @apply text-sm font-medium text-gray-600 hover:text-[var(--color-brand-primary)] cursor-pointer bg-transparent border-none;
+}
+
+.pd-breadcrumb{
+    @apply flex items-center gap-2 text-xs md:text-sm text-gray-500 px-4 md:px-8 py-3 capitalize;
+}
+
+.pd-breadcrumb a{
+    @apply hover:text-[var(--color-brand-primary)] no-underline text-gray-500;
+}
+
+.pd-breadcrumb-current{
+    @apply text-gray-800 font-medium;
+}
+
+.pd-main{
+    @apply max-w-[1400px] mx-auto px-4 md:px-8 pb-10 grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-6 items-start;
+}
+
+.pd-left{
+    @apply flex flex-col gap-5 min-w-0;
+}
+
+.pd-gallery{
+    @apply bg-white border border-gray-200 rounded-xl p-4 md:p-6;
+}
+
+.pd-main-image{
+    @apply relative bg-white aspect-square md:aspect-[4/3] flex items-center justify-center rounded-lg overflow-hidden mb-4;
+}
+
+.pd-main-image img{
+    @apply max-w-full max-h-full object-contain;
+}
+
+.pd-discount-tag{
+    @apply top-2 left-2 text-xs px-2 py-1;
+}
+
+.pd-thumbs{
+    @apply flex flex-wrap gap-2;
+}
+
+.pd-thumb{
+    @apply w-14 h-14 md:w-16 md:h-16 border border-gray-200 rounded-md overflow-hidden p-1 bg-white cursor-pointer flex items-center justify-center;
+}
+
+.pd-thumb.active{
+    @apply border-[var(--color-brand-primary)] ring-1 ring-[var(--color-brand-primary)];
+}
+
+.pd-thumb img{
+    @apply w-full h-full object-contain;
+}
+
+.pd-card{
+    @apply bg-white border border-gray-200 rounded-xl p-4 md:p-6;
+}
+
+.pd-card-title{
+    @apply text-base md:text-lg font-bold text-gray-900 mb-3;
+}
+
+.pd-description{
+    @apply text-sm text-gray-600 leading-relaxed mb-3;
+}
+
+.pd-bullet-list{
+    @apply list-disc list-inside text-sm text-gray-600 space-y-1.5 capitalize;
+}
+
+.pd-specs-grid{
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+}
+
+.pd-specs-col h4{
+    @apply text-sm font-bold text-gray-800 mb-2 uppercase tracking-wide;
+}
+
+.pd-specs-list{
+    @apply text-sm text-gray-600 space-y-1.5;
+}
+
+.pd-specs-list li span{
+    @apply font-semibold text-gray-800;
+}
+
+.pd-right{
+    @apply lg:sticky lg:top-4;
+}
+
+.pd-buybox{
+    @apply bg-white border border-gray-200 rounded-xl p-4 md:p-5 flex flex-col gap-3;
+}
+
+.pd-title{
+    @apply text-base md:text-lg font-bold text-gray-900 leading-snug;
+}
+
+.pd-price-row{
+    @apply flex flex-wrap items-center gap-2;
+}
+
+.pd-price{
+    @apply text-xl md:text-2xl font-black text-[var(--color-brand-primary)];
+}
+
+.pd-original-price{
+    @apply text-gray-400 line-through text-sm;
+}
+
+.pd-inline-tag{
+    @apply static;
+}
+
+.pd-add-to-cart{
+    @apply w-full bg-[var(--color-brand-primary)] text-white font-semibold rounded-lg py-3 cursor-pointer hover:bg-[var(--color-brand-secondary)] transition-colors flex items-center justify-center gap-2 mt-1;
+}
+
+.pd-buybox-note{
+    @apply text-xs text-gray-500 border-t border-gray-100 pt-3 mt-1;
+}
+
+.pd-chat-link{
+    @apply text-[var(--color-brand-primary)] font-medium underline bg-transparent border-none cursor-pointer p-0;
+}
+
+.pd-related{
+    @apply max-w-[1400px] mx-auto px-4 md:px-8 pb-16;
+}
+
+.pd-related-title{
+    @apply text-lg md:text-xl font-bold text-gray-900 mb-4;
+}
+
+.pd-related-grid{
+    @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3;
+}
+
+.pd-related-card{
+    @apply flex flex-col bg-white border border-gray-200 rounded-lg p-2 hover:shadow-md hover:border-gray-300 transition-all duration-200 no-underline text-inherit;
+}
+
+.pd-related-image{
+    @apply relative bg-white rounded-md overflow-hidden mb-1.5 aspect-square flex items-center justify-center p-1.5;
+}
+
+.pd-related-image img{
+    @apply w-full h-full object-contain;
+}
+
+.pd-related-name{
+    @apply font-medium text-[11px] md:text-xs text-gray-800 mb-1 leading-snug line-clamp-2 min-h-[2.1em];
+}

@@ -66,19 +66,15 @@ const Product = () => {
   }
 
   useEffect(() => {
-    Promise.all([
-      fetch("https://fakestoreapi.com/products?limit=12").then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch new arrivals")
+    fetch("https://dummyjson.com/products?limit=100")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch products")
         return res.json()
-      }),
-      fetch("https://fakestoreapi.com/products?limit=20").then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch top selling")
-        return res.json()
-      }),
-    ])
-      .then(([arrivals, selling]) => {
-        setNewArrivals(arrivals.map(mapApiProduct))
-        setTopSelling(selling.slice(12).map(mapApiProduct))
+      })
+      .then((data) => {
+        const products = (data.products || []).map(mapApiProduct)
+        setNewArrivals(products.slice(0, 40))
+        setTopSelling(products.slice(40, 100))
         setLoading(false)
       })
       .catch((err) => {
@@ -158,35 +154,37 @@ const Product = () => {
       </div>
 
       <div className="hero">
-        <div className="hero-text">
-          <h1>FIND CLOTHES<br />THAT MATCHES<br />YOUR STYLE</h1>
-          <p>Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.</p>
-          <button className="shop-now" onClick={() => scrollToSection(newArrivalsRef)}>Shop Now</button>
+        <div className="hero-inner">
+          <div className="hero-text">
+            <h1>FIND CLOTHES<br />THAT MATCHES<br />YOUR STYLE</h1>
+            <p>Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.</p>
+            <button className="shop-now" onClick={() => scrollToSection(newArrivalsRef)}>Shop Now</button>
 
-          <div className="stats">
-            <div className="stat">
-              <h2>200+</h2>
-              <p>International Brands</p>
-            </div>
-            <div className="stat divider">
-              <h2>2,000+</h2>
-              <p>High-Quality Products</p>
-            </div>
-            <div className="stat divider">
-              <h2>30,000+</h2>
-              <p>Happy Customers</p>
+            <div className="stats">
+              <div className="stat">
+                <h2>200+</h2>
+                <p>International Brands</p>
+              </div>
+              <div className="stat divider">
+                <h2>2,000+</h2>
+                <p>High-Quality Products</p>
+              </div>
+              <div className="stat divider">
+                <h2>30,000+</h2>
+                <p>Happy Customers</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="hero-image">
-          <svg className="sparkle sparkle-1" width="104" height="104" viewBox="0 0 104 104" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M52 0C52 28.7188 75.2812 52 104 52C75.2812 52 52 75.2812 52 104C52 75.2812 28.7188 52 0 52C28.7188 52 52 28.7188 52 0Z" fill="black"/>
-          </svg>
-          <svg className="sparkle sparkle-2" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M28 0C28 15.464 40.536 28 56 28C40.536 28 28 40.536 28 56C28 40.536 15.464 28 0 28C15.464 28 28 15.464 28 0Z" fill="black"/>
-          </svg>
-          <img src="/models.png" alt="Models wearing denim jackets" />
+          <div className="hero-image">
+            <svg className="sparkle sparkle-1" width="104" height="104" viewBox="0 0 104 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M52 0C52 28.7188 75.2812 52 104 52C75.2812 52 52 75.2812 52 104C52 75.2812 28.7188 52 0 52C28.7188 52 52 28.7188 52 0Z" fill="black"/>
+            </svg>
+            <svg className="sparkle sparkle-2" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M28 0C28 15.464 40.536 28 56 28C40.536 28 28 40.536 28 56C28 40.536 15.464 28 0 28C15.464 28 28 15.464 28 0Z" fill="black"/>
+            </svg>
+            <img src="/models.png" alt="Models wearing denim jackets" />
+          </div>
         </div>
       </div>
 
@@ -199,10 +197,10 @@ const Product = () => {
       </div>
 
       <div ref={newArrivalsRef}>
-        <ProductSection title="NEW ARRIVALS" products={newArrivals} loading={loading} error={error} initialCount={4} onAddToCart={handleAddToCart} />
+        <ProductSection title="NEW ARRIVALS" products={newArrivals} loading={loading} error={error} initialCount={12} onAddToCart={handleAddToCart} />
       </div>
       <div ref={topSellingRef}>
-        <ProductSection title="TOP SELLING" products={topSelling} loading={loading} error={error} bordered initialCount={4} onAddToCart={handleAddToCart} />
+        <ProductSection title="TOP SELLING" products={topSelling} loading={loading} error={error} bordered initialCount={12} onAddToCart={handleAddToCart} />
       </div>
       
       <DressStyleSection />

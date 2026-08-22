@@ -1,12 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { formatNaira } from '../../utils/currency'
 
-const Star = ({ filled, half }) => {
+export const Star = ({ filled, half }) => {
   if (half) return <span className="star half">★</span>
   return <span className={`star ${filled ? 'filled' : ''}`}>★</span>
 }
 
-const Rating = ({ value = 0 }) => {
+export const Rating = ({ value = 0 }) => {
   const fullStars = Math.floor(value)
   const hasHalf = value % 1 !== 0
 
@@ -27,22 +28,28 @@ const ProductCard = ({ product, onAddToCart }) => {
 
   return (
     <div className="product-card">
-      <div className="product-image">
-        <img src={product.image} alt={product.name || 'Product Image'} />
-      </div>
-      <h3 className="product-name">{product.name}</h3>
-      <Rating value={product.rating} />
-      <div className="price-row">
-        <span className="price">{formatNaira(product.price)}</span>
-        {product.originalPrice && (
-          <span className="original-price">{formatNaira(product.originalPrice)}</span>
-        )}
-        {product.discount && (
-          <span className="discount-badge">-{product.discount}%</span>
-        )}
-      </div>
-      <button className="add-to-cart" onClick={() => onAddToCart && onAddToCart(product)}>
-        Add to Cart
+      <Link to={`/product/${product.id}`} className="product-card-link">
+        <div className="product-image">
+          {product.discount && <span className="discount-tag">-{product.discount}%</span>}
+          <img src={product.image} alt={product.name || 'Product Image'} />
+        </div>
+        <h3 className="product-name">{product.name}</h3>
+        <Rating value={product.rating} />
+        <div className="price-row">
+          <span className="price">{formatNaira(product.price)}</span>
+          {product.originalPrice && (
+            <span className="original-price">{formatNaira(product.originalPrice)}</span>
+          )}
+        </div>
+      </Link>
+      <button
+        className="add-to-cart"
+        onClick={(e) => {
+          e.preventDefault()
+          onAddToCart && onAddToCart(product)
+        }}
+      >
+        🛒 Add to Cart
       </button>
     </div>
   )
