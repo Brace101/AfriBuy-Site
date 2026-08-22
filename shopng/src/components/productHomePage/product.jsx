@@ -12,9 +12,11 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItem, selectCartCount } from '../../store/cartSlice'
 import { selectCurrentUser, logout } from '../../store/authSlice'
+import { useToast } from '../common/useToast'
 
 const Product = () => {
   const dispatch = useDispatch()
+  const { showToast } = useToast()
   const currentUser = useSelector(selectCurrentUser)
   const cartItemCount = useSelector(selectCartCount)
 
@@ -34,6 +36,7 @@ const Product = () => {
 
   const handleAddToCart = (product) => {
     dispatch(addItem(product))
+    showToast(`${product.name} added to cart`, { icon: '🛒' })
   }
 
   useEffect(() => {

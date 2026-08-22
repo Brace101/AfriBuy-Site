@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, Navigate, useLocation } from 'react-router-dom'
 import './orderConfirmation.css'
+import { formatNaira } from '../../utils/currency'
 
 const OrderConfirmation = () => {
   const location = useLocation()
@@ -50,7 +51,7 @@ const OrderConfirmation = () => {
                 <p className="confirmation-item-name">{item.name}</p>
                 <p className="confirmation-item-qty">Qty: {item.quantity}</p>
               </div>
-              <p className="confirmation-item-price">${(item.price * item.quantity).toFixed(2)}</p>
+              <p className="confirmation-item-price">{formatNaira(item.price * item.quantity)}</p>
             </div>
           ))}
         </div>
@@ -58,15 +59,15 @@ const OrderConfirmation = () => {
         <div className="confirmation-totals">
           <div className="confirmation-total-row">
             <span>Subtotal</span>
-            <span>${order.subtotal.toFixed(2)}</span>
+            <span>{formatNaira(order.subtotal)}</span>
           </div>
           <div className="confirmation-total-row">
             <span>Shipping</span>
-            <span>{order.shipping === 0 ? 'Free' : `$${order.shipping.toFixed(2)}`}</span>
+            <span>{order.shipping === 0 ? 'Free' : formatNaira(order.shipping)}</span>
           </div>
           <div className="confirmation-total-row confirmation-total-final">
             <span>Total Paid</span>
-            <span>${order.total.toFixed(2)}</span>
+            <span>{formatNaira(order.total)}</span>
           </div>
         </div>
 

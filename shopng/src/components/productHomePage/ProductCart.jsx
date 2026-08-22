@@ -1,4 +1,5 @@
 import React from 'react'
+import { formatNaira } from '../../utils/currency'
 
 const Star = ({ filled, half }) => {
   if (half) return <span className="star half">★</span>
@@ -32,9 +33,9 @@ const ProductCard = ({ product, onAddToCart }) => {
       <h3 className="product-name">{product.name}</h3>
       <Rating value={product.rating} />
       <div className="price-row">
-        <span className="price">${product.price}</span>
+        <span className="price">{formatNaira(product.price)}</span>
         {product.originalPrice && (
-          <span className="original-price">${product.originalPrice}</span>
+          <span className="original-price">{formatNaira(product.originalPrice)}</span>
         )}
         {product.discount && (
           <span className="discount-badge">-{product.discount}%</span>

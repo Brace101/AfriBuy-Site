@@ -5,10 +5,11 @@ import './checkout.css';
 import { selectCartItems, selectCartSubtotal, clearCart } from '../../store/cartSlice';
 import { selectCurrentUser } from '../../store/authSlice';
 import { addOrder } from '../../store/ordersSlice';
+import { formatNaira } from '../../utils/currency';
 
 const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-const FREE_SHIPPING_THRESHOLD = 100;
-const FLAT_SHIPPING_FEE = 7.5;
+const FREE_SHIPPING_THRESHOLD = 150000; // ₦150,000
+const FLAT_SHIPPING_FEE = 4500; // ₦4,500
 
 export default function Checkout() {
   const dispatch = useDispatch();
@@ -236,7 +237,7 @@ export default function Checkout() {
             </div>
 
             <button type="submit" className="checkout-pay-btn" disabled={isPlacingOrder}>
-              {isPlacingOrder ? 'Placing Order…' : `Complete Order — $${total.toFixed(2)}`}
+              {isPlacingOrder ? 'Placing Order…' : `Complete Order — ${formatNaira(total)}`}
             </button>
           </form>
         </div>
@@ -254,7 +255,7 @@ export default function Checkout() {
                 </div>
                 <div className="checkout-summary-product-info">
                   <p className="checkout-summary-product-name">{item.name}</p>
-                  <p className="checkout-summary-product-price">${(item.price * item.quantity).toFixed(2)}</p>
+                  <p className="checkout-summary-product-price">{formatNaira(item.price * item.quantity)}</p>
                 </div>
               </div>
             ))}
@@ -262,20 +263,20 @@ export default function Checkout() {
 
           <div className="checkout-summary-item">
             <span className="text-gray-600">Subtotal</span>
-            <span className="font-bold text-gray-900">${subtotal.toFixed(2)}</span>
+            <span className="font-bold text-gray-900">{formatNaira(subtotal)}</span>
           </div>
           <div className="checkout-summary-item">
             <span className="text-gray-600">Shipping</span>
-            <span className="font-bold text-gray-900">{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
+            <span className="font-bold text-gray-900">{shipping === 0 ? 'Free' : formatNaira(shipping)}</span>
           </div>
           {shipping > 0 && (
             <p className="checkout-shipping-note">
-              Add ${(FREE_SHIPPING_THRESHOLD - subtotal).toFixed(2)} more to unlock free shipping.
+              Add {formatNaira(FREE_SHIPPING_THRESHOLD - subtotal)} more to unlock free shipping.
             </p>
           )}
           <div className="checkout-summary-item border-none text-base font-black pt-4">
             <span>Total</span>
-            <span className="text-[var(--color-brand-primary)]">${total.toFixed(2)}</span>
+            <span className="text-[var(--color-brand-primary)]">{formatNaira(total)}</span>
           </div>
         </div>
       </div>

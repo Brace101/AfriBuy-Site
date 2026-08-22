@@ -112,7 +112,7 @@
 }
 
 .signup-submit{
-    @apply w-full bg-[var(--color-brand-primary)] text-white rounded-full py-5 text-lg font-semibold mt-4 cursor-pointer hover:bg-[var(--color-brand-secondary)] active:scale-[0.99] transition-all shadow-lg shadow-[var(--color-brand-primary)]/20;
+    @apply w-full bg-[var(--color-brand-primary)] text-white rounded-full py-5 text-lg font-semibold mt-4 cursor-pointer hover:bg-[var(--color-brand-secondary)] active:scale-[0.99] transition-all shadow-lg shadow-[var(--color-brand-primary)]/20 disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100;
 }
 
 .signup-footer{

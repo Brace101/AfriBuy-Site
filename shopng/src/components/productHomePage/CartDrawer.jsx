@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCartItems, selectCartSubtotal, increaseQty, decreaseQty, removeItem } from '../../store/cartSlice';
 import { selectIsAuthenticated } from '../../store/authSlice';
+import { formatNaira } from '../../utils/currency';
 
 const CartDrawer = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
               </div>
               <div className="cart-item-info">
                 <h4>{item.name}</h4>
-                <p className="cart-item-price">${item.price}</p>
+                <p className="cart-item-price">{formatNaira(item.price)}</p>
                 <div className="cart-qty-controls">
                   <button onClick={() => dispatch(decreaseQty(item.id))}>−</button>
                   <span>{item.quantity}</span>
@@ -54,7 +55,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
           <div className="cart-footer">
             <div className="cart-subtotal">
               <span>Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
+              <span>{formatNaira(subtotal)}</span>
             </div>
             <button className="cart-checkout" onClick={handleGoToCheckout}>
               Go to Checkout

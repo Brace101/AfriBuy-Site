@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { formatNaira } from '../../utils/currency'
 
 const SearchBar = ({ allProducts, onSelectResult }) => {
   const [term, setTerm] = useState('')
@@ -55,7 +56,7 @@ const SearchBar = ({ allProducts, onSelectResult }) => {
               </div>
               <div className="search-result-info">
                 <p className="search-result-name">{product.name}</p>
-                <p className="search-result-price">${product.price}</p>
+                <p className="search-result-price">{formatNaira(product.price)}</p>
               </div>
             </div>
           ))}
