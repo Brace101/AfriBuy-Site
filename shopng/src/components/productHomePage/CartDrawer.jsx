@@ -1,12 +1,22 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCartItems, selectCartSubtotal, increaseQty, decreaseQty, removeItem } from '../../store/cartSlice';
+import { selectIsAuthenticated } from '../../store/authSlice';
 
-const CartDrawer = ({ isOpen, onClose, cartItems = [], onIncrease, onDecrease, onRemove }) => {
-  const navigate = useNavigate(); // Hook for programmatic navigation
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+const CartDrawer = ({ isOpen, onClose }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
+  const subtotal = useSelector(selectCartSubtotal);
+  const isAuthenticated = useSelector(selectIsAuthenticated);
 
   const handleGoToCheckout = () => {
     onClose(); // Close the drawer
+    if (!isAuthenticated) {
+      navigate('/login', { state: { from: '/checkout' } });
+      return;
+    }
     navigate('/checkout'); // Route to /checkout page
   };
 
@@ -18,7 +28,7 @@ const CartDrawer = ({ isOpen, onClose, cartItems = [], onIncrease, onDecrease, o
           <h2>Your Cart ({cartItems.length})</h2>
           <button className="cart-close" onClick={onClose}>✕</button>
         </div>
-        
+
         <div className="cart-items">
           {cartItems.length === 0 && <p className="cart-empty">Your cart is empty.</p>}
           {cartItems.map((item) => (
@@ -30,12 +40,12 @@ const CartDrawer = ({ isOpen, onClose, cartItems = [], onIncrease, onDecrease, o
                 <h4>{item.name}</h4>
                 <p className="cart-item-price">${item.price}</p>
                 <div className="cart-qty-controls">
-                  <button onClick={() => onDecrease(item.id)}>−</button>
+                  <button onClick={() => dispatch(decreaseQty(item.id))}>−</button>
                   <span>{item.quantity}</span>
-                  <button onClick={() => onIncrease(item.id)}>+</button>
+                  <button onClick={() => dispatch(increaseQty(item.id))}>+</button>
                 </div>
               </div>
-              <button className="cart-remove" onClick={() => onRemove(item.id)}>✕</button>
+              <button className="cart-remove" onClick={() => dispatch(removeItem(item.id))}>✕</button>
             </div>
           ))}
         </div>

@@ -1,15 +1,24 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, useLocation, Link } from 'react-router-dom'
 import './login.css'
+import { loginUser } from '../../../store/authSlice'
 
 const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
 
 const Login = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const location = useLocation()
+    const users = useSelector((state) => state.auth.users)
+
     const [formData, setFormData] = useState({
         email: '',
         password: '',
     })
     const [errors, setErrors] = useState({})
     const [rememberMe, setRememberMe] = useState(false)
+    const [submitting, setSubmitting] = useState(false)
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -33,8 +42,30 @@ const Login = () => {
             return
         }
 
-        // Swap this for a real API call to your backend when ready.
-        console.log('Logging in:', { ...formData, rememberMe })
+        setSubmitting(true)
+
+        // Simulate a brief network call so the flow feels real.
+        setTimeout(() => {
+            const match = users.find(
+                (u) =>
+                    u.email.toLowerCase() === formData.email.trim().toLowerCase() &&
+                    u.password === formData.password
+            )
+
+            if (!match) {
+                setErrors({ password: 'Incorrect email or password. Please try again.' })
+                setSubmitting(false)
+                return
+            }
+
+            const safeUser = { ...match }
+            delete safeUser.password
+            dispatch(loginUser(safeUser))
+            setSubmitting(false)
+
+            const redirectTo = location.state?.from || '/'
+            navigate(redirectTo, { replace: true })
+        }, 400)
     }
 
     return (
@@ -129,19 +160,24 @@ const Login = () => {
                                 />
                                 Remember me
                             </label>
-                            <a href="/forgot-password" className="login-forgot">
+                            <span
+                                className="login-forgot"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => alert('Password reset isn\'t available in this demo yet. Please sign in with your existing details.')}
+                            >
                                 Forgot password?
-                            </a>
+                            </span>
                         </div>
 
-                        <button type="submit" className="login-submit">
-                            Log In
+                        <button type="submit" className="login-submit" disabled={submitting}>
+                            {submitting ? 'Logging in…' : 'Log In'}
                         </button>
                     </form>
 
                     <p className="login-footer">
                         Don't have an account?{' '}
-                        <a href="/signup">Sign Up</a>
+                        <Link to="/signup">Sign Up</Link>
                     </p>
                 </div>
             </div>

@@ -259,6 +259,38 @@
     @apply absolute -top-2 -right-2 bg-[var(--color-brand-secondary)] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold;
 }
 
+.account-menu-wrap{
+    @apply relative;
+}
+
+.account-icon-btn{
+    @apply cursor-pointer bg-transparent border-none p-0 leading-none flex items-center justify-center;
+}
+
+.account-avatar{
+    @apply w-8 h-8 rounded-full bg-[var(--color-brand-primary)] text-white flex items-center justify-center text-sm font-bold;
+}
+
+.account-dropdown{
+    @apply absolute right-0 top-10 z-50 bg-white rounded-xl shadow-lg border border-gray-100 p-4 flex flex-col gap-2 min-w-[190px] text-left;
+}
+
+.account-dropdown-greeting{
+    @apply text-sm font-bold text-gray-900;
+}
+
+.account-dropdown-email{
+    @apply text-xs text-gray-500 mb-1 truncate;
+}
+
+.account-dropdown-link{
+    @apply text-sm font-medium text-[var(--color-brand-primary)] hover:underline py-1;
+}
+
+.account-dropdown-signout{
+    @apply text-sm font-semibold text-white bg-[var(--color-brand-primary)] rounded-full py-2 mt-1 cursor-pointer hover:bg-[var(--color-brand-secondary)] transition-colors;
+}
+
 .dress-style-section{
     @apply px-4 md:px-8 py-8 md:py-12;
 }

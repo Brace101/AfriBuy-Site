@@ -50,3 +50,82 @@
 .checkout-pay-btn {
   @apply w-full bg-[var(--color-brand-primary)] text-white font-semibold rounded-full py-4 mt-6 hover:bg-[var(--color-brand-secondary)] transition-all shadow-md active:scale-[0.99] cursor-pointer;
 }
+.checkout-topbar {
+  @apply max-w-6xl mx-auto flex items-center justify-between mb-6 px-1;
+}
+
+.checkout-logo {
+  @apply text-xl font-black text-[var(--color-brand-primary)] tracking-tight no-underline;
+}
+
+.checkout-back-link {
+  @apply text-sm font-semibold text-gray-600 hover:text-[var(--color-brand-primary)] transition-colors no-underline;
+}
+
+.checkout-input-error {
+  @apply border-red-400 focus:ring-red-300 focus:border-red-400;
+}
+
+.checkout-error {
+  @apply text-xs text-red-500 mt-1;
+}
+
+.checkout-payment-options {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6;
+}
+
+.checkout-payment-option {
+  @apply flex items-center gap-2 border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium cursor-pointer transition-all;
+}
+
+.checkout-payment-option.selected {
+  @apply border-[var(--color-brand-primary)] bg-[var(--color-brand-tint)];
+}
+
+.checkout-payment-option input {
+  @apply accent-[var(--color-brand-primary)];
+}
+
+.checkout-summary-items {
+  @apply flex flex-col gap-3 mb-4 max-h-72 overflow-y-auto pr-1;
+}
+
+.checkout-summary-product {
+  @apply flex items-center gap-3;
+}
+
+.checkout-summary-product-image {
+  @apply relative w-14 h-14 rounded-lg overflow-hidden bg-gray-50 border border-gray-100 flex-shrink-0;
+}
+
+.checkout-summary-product-image img {
+  @apply w-full h-full object-contain p-1;
+}
+
+.checkout-summary-qty-badge {
+  @apply absolute -top-1.5 -right-1.5 bg-[var(--color-brand-primary)] text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold;
+}
+
+.checkout-summary-product-info {
+  @apply flex-1 min-w-0;
+}
+
+.checkout-summary-product-name {
+  @apply text-sm font-medium text-gray-800 truncate;
+}
+
+.checkout-summary-product-price {
+  @apply text-sm font-bold text-gray-900;
+}
+
+.checkout-shipping-note {
+  @apply text-xs text-gray-500 py-2;
+}
+
+.checkout-empty-state {
+  @apply max-w-lg mx-auto bg-white p-10 rounded-2xl border border-gray-200 shadow-sm text-center flex flex-col items-center gap-3 mt-16;
+}
+
+.checkout-empty-btn {
+  @apply inline-block no-underline mt-4 px-8;
+}

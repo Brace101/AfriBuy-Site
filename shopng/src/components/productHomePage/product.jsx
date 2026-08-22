@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react'
-import ProductCard from './ProductCart'
 import ProductSection from './ProductSection'
 import DressStyleSection from './DressStyleSection'
 import TestimonialsSection from './TestimonialsSection'
@@ -10,54 +9,47 @@ import SearchBar from './SearchBar'
 import { mapApiProduct } from '../../utils/mapApiProduct'
 import './product.css'
 import { Link } from 'react-router-dom'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { addItem, selectCartCount } from '../../store/cartSlice'
+import { selectCurrentUser, logout } from '../../store/authSlice'
 
 const Product = () => {
+  const dispatch = useDispatch()
+  const currentUser = useSelector(selectCurrentUser)
+  const cartItemCount = useSelector(selectCartCount)
+
   const [newArrivals, setNewArrivals] = useState([])
   const [topSelling, setTopSelling] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [cart, setCart] = useState([])
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [isFlyerVisible, setIsFlyerVisible] = useState(true)
+  const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false)
 
+  const accountMenuRef = useRef(null)
   const newArrivalsRef = useRef(null)
   const topSellingRef = useRef(null)
   const brandsRef = useRef(null)
   const newsletterRef = useRef(null)
 
   const handleAddToCart = (product) => {
-    setCart((prev) => {
-      const existing = prev.find((item) => item.id === product.id)
-      if (existing) {
-        return prev.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        )
+    dispatch(addItem(product))
+  }
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (accountMenuRef.current && !accountMenuRef.current.contains(e.target)) {
+        setIsAccountMenuOpen(false)
       }
-      return [...prev, { ...product, quantity: 1 }]
-    })
-    // Drawer no longer auto-opens here — it only opens when the cart icon is clicked.
-  }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
-  const handleIncrease = (id) => {
-    setCart((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, quantity: item.quantity + 1 } : item))
-    )
+  const handleSignOut = () => {
+    dispatch(logout())
+    setIsAccountMenuOpen(false)
   }
-
-  const handleDecrease = (id) => {
-    setCart((prev) =>
-      prev
-        .map((item) => (item.id === id ? { ...item, quantity: item.quantity - 1 } : item))
-        .filter((item) => item.quantity > 0)
-    )
-  }
-
-  const handleRemove = (id) => {
-    setCart((prev) => prev.filter((item) => item.id !== id))
-  }
-
-  const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0)
 
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -94,13 +86,13 @@ const Product = () => {
 
   return (
     <div>
-      {isFlyerVisible && (
+      {isFlyerVisible && !currentUser && (
         <div className="flyer">
           <div className="signup">
             Sign up and get 20% off your first order.{' '}
             <Link to="/signup">Sign Up Now</Link>
           </div>
-          <div className="close" onClick={() => setIsFlyerVisible(false)}>X</div>
+          <div className="close" onClick={() => setIsFlyerVisible(false)}>x</div>
         </div>
       )}
 
@@ -122,7 +114,43 @@ const Product = () => {
             🛒
             {cartItemCount > 0 && <span className="cart-badge">{cartItemCount}</span>}
           </button>
-          <Link to="/signup" className="text-xl">👤</Link>
+
+          <div className="account-menu-wrap" ref={accountMenuRef}>
+            <button
+              className="account-icon-btn"
+              onClick={() => setIsAccountMenuOpen((open) => !open)}
+              aria-label="Account menu"
+            >
+              {currentUser ? (
+                <span className="account-avatar">{currentUser.fullName.trim().charAt(0).toUpperCase()}</span>
+              ) : (
+                <span className="text-xl">👤</span>
+              )}
+            </button>
+
+            {isAccountMenuOpen && (
+              <div className="account-dropdown">
+                {currentUser ? (
+                  <>
+                    <p className="account-dropdown-greeting">Hi, {currentUser.fullName.split(' ')[0]}</p>
+                    <p className="account-dropdown-email">{currentUser.email}</p>
+                    <button className="account-dropdown-signout" onClick={handleSignOut}>
+                      Sign Out
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/login" className="account-dropdown-link" onClick={() => setIsAccountMenuOpen(false)}>
+                      Log In
+                    </Link>
+                    <Link to="/signup" className="account-dropdown-link" onClick={() => setIsAccountMenuOpen(false)}>
+                      Sign Up
+                    </Link>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -130,7 +158,7 @@ const Product = () => {
         <div className="hero-text">
           <h1>FIND CLOTHES<br />THAT MATCHES<br />YOUR STYLE</h1>
           <p>Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.</p>
-          <button className="shop-now">Shop Now</button>
+          <button className="shop-now" onClick={() => scrollToSection(newArrivalsRef)}>Shop Now</button>
 
           <div className="stats">
             <div className="stat">
@@ -164,7 +192,7 @@ const Product = () => {
         <span>ZARA</span>
         <span>GUCCI</span>
         <span>PRADA</span>
-        <span>Calvin Klein</span>
+        <span>CALVIN KLIEN</span>
       </div>
 
       <div ref={newArrivalsRef}>
@@ -186,10 +214,6 @@ const Product = () => {
       <CartDrawer
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
-        cartItems={cart}
-        onIncrease={handleIncrease}
-        onDecrease={handleDecrease}
-        onRemove={handleRemove}
       />
     </div>
   )

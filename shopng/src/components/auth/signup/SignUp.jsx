@@ -1,10 +1,17 @@
 import React, { useState } from 'react'
 import './signup.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { registerUser } from '../../../store/authSlice'
 
 const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
 
 const SignUp = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const location = useLocation()
+    const users = useSelector((state) => state.auth.users)
+
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -12,6 +19,7 @@ const SignUp = () => {
         password: '',
     })
     const [errors, setErrors] = useState({})
+    const [submitting, setSubmitting] = useState(false)
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -24,6 +32,9 @@ const SignUp = () => {
         if (!formData.fullName.trim()) newErrors.fullName = 'Full name is required.'
         if (!formData.email.trim()) newErrors.email = 'Email is required.'
         else if (!isValidEmail(formData.email)) newErrors.email = 'Enter a valid email address.'
+        else if (users.some((u) => u.email.toLowerCase() === formData.email.trim().toLowerCase())) {
+            newErrors.email = 'An account with this email already exists.'
+        }
         if (!formData.phone.trim()) newErrors.phone = 'Phone number is required.'
         if (!formData.password) newErrors.password = 'Password is required.'
         else if (formData.password.length < 8) newErrors.password = 'Password must be at least 8 characters.'
@@ -38,8 +49,22 @@ const SignUp = () => {
             return
         }
 
-        // Swap this for a real API call to your backend when ready.
-        console.log('Signing up:', formData)
+        setSubmitting(true)
+
+        setTimeout(() => {
+            const newUser = {
+                id: Date.now().toString(),
+                fullName: formData.fullName.trim(),
+                email: formData.email.trim(),
+                phone: formData.phone.trim(),
+                password: formData.password,
+            }
+            dispatch(registerUser(newUser))
+            setSubmitting(false)
+
+            const redirectTo = location.state?.from || '/'
+            navigate(redirectTo, { replace: true })
+        }, 400)
     }
 
     return (
@@ -167,14 +192,14 @@ const SignUp = () => {
                             )}
                         </div>
 
-                        <button type="submit" className="signup-submit">
-                            Sign Up
+                        <button type="submit" className="signup-submit" disabled={submitting}>
+                            {submitting ? 'Creating account…' : 'Sign Up'}
                         </button>
                     </form>
 
                     <p className="signup-footer">
                         Already have an account?{' '}
-                        <a href="/login">Log In</a>
+                        <Link to="/login">Log In</Link>
                     </p>
                 </div>
             </div>
