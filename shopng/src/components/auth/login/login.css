@@ -99,6 +99,14 @@
     @apply w-full bg-gray-50 border border-gray-200 rounded-2xl pl-14 pr-5 py-5 text-lg outline-none focus:ring-2 focus:ring-[var(--color-brand-secondary)] focus:border-[var(--color-brand-secondary)] transition-all;
 }
 
+.login-input-has-toggle{
+    @apply pr-14;
+}
+
+.login-toggle-password{
+    @apply absolute right-5 top-1/2 -translate-y-1/2 text-lg bg-transparent border-none cursor-pointer p-0 leading-none opacity-70 hover:opacity-100 transition-opacity;
+}
+
 .login-input.error{
     @apply ring-2 ring-red-400 border-red-400;
 }

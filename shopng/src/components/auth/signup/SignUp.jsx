@@ -20,6 +20,7 @@ const SignUp = () => {
     })
     const [errors, setErrors] = useState({})
     const [submitting, setSubmitting] = useState(false)
+    const [showPassword, setShowPassword] = useState(false)
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -180,12 +181,21 @@ const SignUp = () => {
                                 <input
                                     id="password"
                                     name="password"
-                                    type="password"
+                                    type={showPassword ? 'text' : 'password'}
                                     placeholder="••••••••"
                                     value={formData.password}
                                     onChange={handleChange}
-                                    className={`signup-input ${errors.password ? 'error' : ''}`}
+                                    className={`signup-input signup-input-has-toggle ${errors.password ? 'error' : ''}`}
                                 />
+                                <button
+                                    type="button"
+                                    className="signup-toggle-password"
+                                    onClick={() => setShowPassword((prev) => !prev)}
+                                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                                    tabIndex={-1}
+                                >
+                                    {showPassword ? '🙈' : '👁️'}
+                                </button>
                             </div>
                             {errors.password && (
                                 <p className="signup-error">{errors.password}</p>
