@@ -107,6 +107,52 @@
     @apply relative flex items-center;
 }
 
+.nav-icon-hide-mobile{
+    @apply hidden md:flex;
+}
+
+.mobile-tabbar{
+    @apply md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 flex items-stretch justify-around;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.mobile-tab-item{
+    @apply relative flex-1 flex flex-col items-center justify-center gap-1 bg-transparent border-none py-2 text-gray-600 text-[11px] font-medium cursor-pointer no-underline;
+}
+
+.mobile-tab-item.active,
+.mobile-tab-item:active{
+    @apply text-[var(--color-brand-primary)];
+}
+
+.mobile-tab-btn{
+    @apply flex flex-col items-center justify-center gap-1 bg-transparent border-none p-0 text-gray-600 text-[11px] font-medium cursor-pointer w-full;
+}
+
+.mobile-tab-label{
+    @apply leading-none;
+}
+
+.mobile-tab-icon-wrap{
+    @apply relative flex items-center;
+}
+
+.mobile-tab-avatar{
+    @apply w-5 h-5 rounded-full bg-[var(--color-brand-primary)] text-white flex items-center justify-center text-[10px] font-bold;
+}
+
+.mobile-tab-badge{
+    @apply absolute -top-1.5 -right-2 bg-[var(--color-brand-secondary)] text-white text-[9px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold;
+}
+
+.mobile-account-wrap{
+    @apply relative;
+}
+
+.mobile-account-dropdown{
+    @apply absolute bottom-full right-0 mb-2 left-auto;
+}
+
 .hero{
     @apply bg-[var(--color-brand-tint)] px-4 md:px-8 py-10 md:py-14 relative overflow-hidden;
 }
