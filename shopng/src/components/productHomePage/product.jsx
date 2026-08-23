@@ -32,8 +32,6 @@ const Product = () => {
   const [isHelpMenuOpen, setIsHelpMenuOpen] = useState(false)
 
   const accountMenuRef = useRef(null)
-  const mobileAccountMenuRef = useRef(null)
-  const mobileAccountDropdownRef = useRef(null)
   const helpMenuRef = useRef(null)
   const newArrivalsRef = useRef(null)
   const topSellingRef = useRef(null)
@@ -47,11 +45,7 @@ const Product = () => {
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      const insideAccountMenu =
-        (accountMenuRef.current && accountMenuRef.current.contains(e.target)) ||
-        (mobileAccountMenuRef.current && mobileAccountMenuRef.current.contains(e.target)) ||
-        (mobileAccountDropdownRef.current && mobileAccountDropdownRef.current.contains(e.target))
-      if (!insideAccountMenu) {
+      if (accountMenuRef.current && !accountMenuRef.current.contains(e.target)) {
         setIsAccountMenuOpen(false)
       }
       if (helpMenuRef.current && !helpMenuRef.current.contains(e.target)) {
@@ -97,7 +91,7 @@ const Product = () => {
   }, [])
 
   return (
-    <div className="pb-16 md:pb-0">
+    <div>
       {isFlyerVisible && !currentUser && (
         <div className="flyer">
           <div className="signup">
@@ -124,7 +118,7 @@ const Product = () => {
         <SearchBar allProducts={allProducts} onSelectResult={handleSelectSearchResult} />
 
         <div className="nav-icons">
-          <div className="account-menu-wrap nav-icon-hide-mobile" ref={accountMenuRef}>
+          <div className="account-menu-wrap" ref={accountMenuRef}>
             <button
               className="nav-icon-item"
               onClick={() => setIsAccountMenuOpen((open) => !open)}
@@ -200,7 +194,7 @@ const Product = () => {
             )}
           </div>
 
-          <Link to="/wishlist" className="nav-icon-item nav-icon-cart nav-icon-hide-mobile">
+          <Link to="/wishlist" className="nav-icon-item nav-icon-cart">
             <span className="nav-icon-cart-wrap">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
@@ -210,7 +204,7 @@ const Product = () => {
             <span className="nav-icon-label">Wishlist</span>
           </Link>
 
-          <button className="nav-icon-item nav-icon-cart nav-icon-hide-mobile" onClick={() => setIsCartOpen(true)} aria-label="Open cart">
+          <button className="nav-icon-item nav-icon-cart" onClick={() => setIsCartOpen(true)} aria-label="Open cart">
             <span className="nav-icon-cart-wrap">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="9" cy="21" r="1" />
@@ -223,79 +217,6 @@ const Product = () => {
           </button>
         </div>
       </div>
-
-      <nav className="mobile-tabbar" aria-label="Primary mobile">
-        <button className="mobile-tab-item" onClick={() => scrollToSection(newArrivalsRef)} aria-label="Home">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M3 9.5 12 3l9 6.5" />
-            <path d="M5 10v10h14V10" />
-          </svg>
-          <span className="mobile-tab-label">Home</span>
-        </button>
-
-        <Link to="/wishlist" className="mobile-tab-item">
-          <span className="mobile-tab-icon-wrap">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-            </svg>
-            {wishlistCount > 0 && <span className="mobile-tab-badge">{wishlistCount}</span>}
-          </span>
-          <span className="mobile-tab-label">Wishlist</span>
-        </Link>
-
-        <button className="mobile-tab-item" onClick={() => setIsCartOpen(true)} aria-label="Open cart">
-          <span className="mobile-tab-icon-wrap">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="9" cy="21" r="1" />
-              <circle cx="20" cy="21" r="1" />
-              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-            </svg>
-            {cartItemCount > 0 && <span className="mobile-tab-badge">{cartItemCount}</span>}
-          </span>
-          <span className="mobile-tab-label">Cart</span>
-        </button>
-
-        <button
-          type="button"
-          ref={mobileAccountMenuRef}
-          className="mobile-tab-item"
-          onClick={() => setIsAccountMenuOpen((open) => !open)}
-          aria-label="Account menu"
-        >
-          {currentUser ? (
-            <span className="mobile-tab-avatar">{currentUser.fullName.trim().charAt(0).toUpperCase()}</span>
-          ) : (
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20 21a8 8 0 0 0-16 0" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
-          )}
-          <span className="mobile-tab-label">Account</span>
-        </button>
-
-        {isAccountMenuOpen && (
-          <div ref={mobileAccountDropdownRef} className="account-dropdown mobile-account-dropdown">
-            {currentUser ? (
-              <>
-                <p className="account-dropdown-greeting">Hi, {currentUser.fullName.split(' ')[0]}</p>
-                <p className="account-dropdown-email">{currentUser.email}</p>
-                <button className="account-dropdown-signout" onClick={handleSignOut}>
-                  Sign Out
-                </button>
-              </>
-            ) : (
-              <>
-                <Link to="/login" className="account-dropdown-link" onClick={() => setIsAccountMenuOpen(false)}>
-                  Log In
-                </Link>
-                <Link to="/signup" className="account-dropdown-link" onClick={() => setIsAccountMenuOpen(false)}>
-                  Sign Up
-                </Link>
-              </>
-            )}
-          </div>
-        )}
-      </nav>
 
       <div className="hero">
         <svg className="sparkle sparkle-wide-left" width="40" height="40" viewBox="0 0 104 104" fill="none" xmlns="http://www.w3.org/2000/svg">
