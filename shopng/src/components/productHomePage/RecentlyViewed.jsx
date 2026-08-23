@@ -3,8 +3,9 @@ import { useSelector } from 'react-redux'
 import { selectRecentlyViewed } from '../../store/recentlyViewedSlice'
 import ProductCard from './ProductCart'
 
-const RecentlyViewed = ({ onAddToCart }) => {
-  const items = useSelector(selectRecentlyViewed)
+const RecentlyViewed = ({ onAddToCart, items: itemsProp }) => {
+  const storeItems = useSelector(selectRecentlyViewed)
+  const items = itemsProp ?? storeItems
 
   if (items.length === 0) return null
 

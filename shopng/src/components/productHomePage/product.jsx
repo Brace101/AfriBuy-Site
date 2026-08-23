@@ -6,19 +6,58 @@ import Newsletter from './Newsletter'
 import CartDrawer from './CartDrawer'
 import Footer from './Footer'
 import SearchBar from './SearchBar'
+import RecentlyViewed from './RecentlyViewed'
 import { mapApiProduct } from '../../utils/mapApiProduct'
 import './product.css'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItem, selectCartCount } from '../../store/cartSlice'
 import { selectCurrentUser, logout } from '../../store/authSlice'
+import { selectWishlistCount } from '../../store/wishlistSlice'
 import { useToast } from '../common/useToast'
+
+// Add each brand's official logo file to /public/brand-logos/ (SVG recommended,
+// ideally a white/mono version since this row sits on a dark background) and
+// point `logo` at it. Until a file is added (or if it fails to load), the
+// brand name is shown as text so the row never breaks.
+const BRANDS = [
+  { name: 'VERSACE', logo: '/brand-logos/versace.svg' },
+  { name: 'ZARA', logo: '/brand-logos/zara.svg' },
+  { name: 'GUCCI', logo: '/brand-logos/gucci.svg' },
+  { name: 'PRADA', logo: '/brand-logos/prada.svg' },
+  { name: 'RALPH LAUREN', logo: '/brand-logos/ralph-lauren.svg' },
+  { name: 'ARMANI', logo: '/brand-logos/armani.svg' },
+  { name: 'HUGO BOSS', logo: '/brand-logos/hugo-boss.svg' },
+  { name: 'BURBERRY', logo: '/brand-logos/burberry.svg' },
+  { name: 'LOUIS VUITTON', logo: '/brand-logos/louis-vuitton.svg' },
+  { name: 'CALVIN KLEIN', logo: '/brand-logos/calvin-klein.svg' },
+]
+
+const BrandLogo = ({ name, logo, hidden }) => {
+  const [failed, setFailed] = useState(false)
+  return (
+    <span className="brand-logo-item" aria-hidden={hidden || undefined}>
+      {logo && !failed ? (
+        <img
+          src={logo}
+          alt={hidden ? '' : name}
+          className="brand-logo-img"
+          loading="lazy"
+          onError={() => setFailed(true)}
+        />
+      ) : (
+        name
+      )}
+    </span>
+  )
+}
 
 const Product = () => {
   const dispatch = useDispatch()
   const { showToast } = useToast()
   const currentUser = useSelector(selectCurrentUser)
   const cartItemCount = useSelector(selectCartCount)
+  const wishlistItemCount = useSelector(selectWishlistCount)
 
   const [newArrivals, setNewArrivals] = useState([])
   const [topSelling, setTopSelling] = useState([])
@@ -125,7 +164,7 @@ const Product = () => {
               {currentUser ? (
                 <span className="account-avatar">{currentUser.fullName.trim().charAt(0).toUpperCase()}</span>
               ) : (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="nav-icon-svg">
                   <path d="M20 21a8 8 0 0 0-16 0" />
                   <circle cx="12" cy="7" r="4" />
                 </svg>
@@ -142,6 +181,9 @@ const Product = () => {
                   <>
                     <p className="account-dropdown-greeting">Hi, {currentUser.fullName.split(' ')[0]}</p>
                     <p className="account-dropdown-email">{currentUser.email}</p>
+                    <Link to="/orders" className="account-dropdown-link" onClick={() => setIsAccountMenuOpen(false)}>
+                      My Orders
+                    </Link>
                     <button className="account-dropdown-signout" onClick={handleSignOut}>
                       Sign Out
                     </button>
@@ -166,7 +208,7 @@ const Product = () => {
               onClick={() => setIsHelpMenuOpen((open) => !open)}
               aria-label="Help menu"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="nav-icon-svg">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 2-3 4" />
                 <line x1="12" y1="17" x2="12.01" y2="17" />
@@ -192,9 +234,19 @@ const Product = () => {
             )}
           </div>
 
+          <Link to="/wishlist" className="nav-icon-item nav-icon-cart" aria-label="View wishlist">
+            <span className="nav-icon-cart-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="nav-icon-svg">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+              </svg>
+              {wishlistItemCount > 0 && <span className="cart-badge">{wishlistItemCount}</span>}
+            </span>
+            <span className="nav-icon-label">Wishlist</span>
+          </Link>
+
           <button className="nav-icon-item nav-icon-cart" onClick={() => setIsCartOpen(true)} aria-label="Open cart">
             <span className="nav-icon-cart-wrap">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="nav-icon-svg">
                 <circle cx="9" cy="21" r="1" />
                 <circle cx="20" cy="21" r="1" />
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
@@ -258,26 +310,12 @@ const Product = () => {
 
       <div className="brands" ref={brandsRef}>
         <div className="brands-track">
-          <span>VERSACE</span>
-          <span>ZARA</span>
-          <span>GUCCI</span>
-          <span>PRADA</span>
-          <span>RALPH LAUREN</span>
-          <span>ARMANI</span>
-          <span>HUGO BOSS</span>
-          <span>BURBERRY</span>
-          <span>LOUIS VUITTON</span>
-          <span>CALVIN KLIEN</span>
-          <span aria-hidden="true">VERSACE</span>
-          <span aria-hidden="true">ZARA</span>
-          <span aria-hidden="true">GUCCI</span>
-          <span aria-hidden="true">PRADA</span>
-          <span aria-hidden="true">RALPH LAUREN</span>
-          <span aria-hidden="true">ARMANI</span>
-          <span aria-hidden="true">HUGO BOSS</span>
-          <span aria-hidden="true">BURBERRY</span>
-          <span aria-hidden="true">LOUIS VUITTON</span>
-          <span aria-hidden="true">CALVIN KLIEN</span>
+          {BRANDS.map((brand) => (
+            <BrandLogo key={brand.name} name={brand.name} logo={brand.logo} />
+          ))}
+          {BRANDS.map((brand) => (
+            <BrandLogo key={`${brand.name}-dup`} name={brand.name} logo={brand.logo} hidden />
+          ))}
         </div>
       </div>
 
@@ -287,7 +325,9 @@ const Product = () => {
       <div ref={topSellingRef}>
         <ProductSection title="TOP SELLING" products={topSelling} loading={loading} error={error} bordered initialCount={12} onAddToCart={handleAddToCart} />
       </div>
-      
+
+      <RecentlyViewed onAddToCart={handleAddToCart} />
+
       <DressStyleSection />
       <TestimonialsSection />
       

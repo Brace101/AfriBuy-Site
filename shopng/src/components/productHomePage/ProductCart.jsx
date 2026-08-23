@@ -1,6 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { formatNaira } from '../../utils/currency'
+import { toggleWishlist, selectIsWishlisted } from '../../store/wishlistSlice'
+import { getStockForProduct, isOutOfStock, isLowStock } from '../../utils/stock'
+import { useToast } from '../common/useToast'
 
 export const Star = ({ filled, half }) => {
   if (half) return <span className="star half">★</span>
@@ -24,13 +28,40 @@ export const Rating = ({ value = 0 }) => {
 }
 
 const ProductCard = ({ product, onAddToCart }) => {
+  const dispatch = useDispatch()
+  const { showToast } = useToast()
+  const isWishlisted = useSelector((state) => selectIsWishlisted(state, product?.id))
+
   if (!product) return null
+
+  const stock = getStockForProduct(product.id)
+  const outOfStock = isOutOfStock(product.id)
+  const lowStock = isLowStock(product.id)
+
+  const handleWishlistToggle = (e) => {
+    e.preventDefault()
+    dispatch(toggleWishlist(product))
+    showToast(
+      isWishlisted ? `Removed ${product.name} from wishlist` : `Saved ${product.name} to wishlist`,
+      { icon: isWishlisted ? '💔' : '❤️' }
+    )
+  }
 
   return (
     <div className="product-card">
+      <button
+        className={`wishlist-heart ${isWishlisted ? 'active' : ''}`}
+        onClick={handleWishlistToggle}
+        aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+        aria-pressed={isWishlisted}
+      >
+        {isWishlisted ? '♥' : '♡'}
+      </button>
       <Link to={`/product/${product.id}`} className="product-card-link">
         <div className="product-image">
           {product.discount && <span className="discount-tag">-{product.discount}%</span>}
+          {outOfStock && <span className="stock-tag stock-tag-out">Sold Out</span>}
+          {!outOfStock && lowStock && <span className="stock-tag stock-tag-low">Only {stock} left</span>}
           <img src={product.image} alt={product.name || 'Product Image'} />
         </div>
         <h3 className="product-name">{product.name}</h3>
@@ -44,12 +75,13 @@ const ProductCard = ({ product, onAddToCart }) => {
       </Link>
       <button
         className="add-to-cart"
+        disabled={outOfStock}
         onClick={(e) => {
           e.preventDefault()
           onAddToCart && onAddToCart(product)
         }}
       >
-        🛒 Add to Cart
+        {outOfStock ? 'Sold Out' : '🛒 Add to Cart'}
       </button>
     </div>
   )

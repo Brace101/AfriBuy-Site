@@ -87,7 +87,7 @@ const SignUp = () => {
                 <h1 className="signup-left-logo">AfriBuy</h1>
 
                 <div className="signup-left-content">
-                    <h2 className="signup-left-heading">JOIN THE<br/>MOVEMENT</h2>
+                    <h2 className="signup-left-heading">STYLE FOR EVERY<br/>WARDROPE</h2>
                     <p className="signup-left-text">
                         Create an account and unlock 20% off your first order, early access to drops, and style picks made for you.
                     </p>

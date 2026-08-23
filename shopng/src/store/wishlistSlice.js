@@ -1,30 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  items: [], // { id, name, image, price, ...product }
+  items: [], // lightweight product snapshots: { id, name, image, price, originalPrice, discount, rating }
 }
 
 const wishlistSlice = createSlice({
   name: 'wishlist',
   initialState,
   reducers: {
-    addItem: (state, action) => {
+    addToWishlist: (state, action) => {
       const product = action.payload
-      const existing = state.items.find((item) => item.id === product.id)
-      if (!existing) {
-        state.items.push(product)
-      }
+      if (!product?.id) return
+      const exists = state.items.some((item) => item.id === product.id)
+      if (!exists) state.items.unshift(product)
     },
-    removeItem: (state, action) => {
+    removeFromWishlist: (state, action) => {
       state.items = state.items.filter((item) => item.id !== action.payload)
     },
-    toggleItem: (state, action) => {
+    toggleWishlist: (state, action) => {
       const product = action.payload
-      const existing = state.items.find((item) => item.id === product.id)
-      if (existing) {
+      if (!product?.id) return
+      const exists = state.items.some((item) => item.id === product.id)
+      if (exists) {
         state.items = state.items.filter((item) => item.id !== product.id)
       } else {
-        state.items.push(product)
+        state.items.unshift(product)
       }
     },
     clearWishlist: (state) => {
@@ -33,12 +33,12 @@ const wishlistSlice = createSlice({
   },
 })
 
-export const { addItem, removeItem, toggleItem, clearWishlist } = wishlistSlice.actions
+export const { addToWishlist, removeFromWishlist, toggleWishlist, clearWishlist } = wishlistSlice.actions
 
 // Selectors
 export const selectWishlistItems = (state) => state.wishlist.items
 export const selectWishlistCount = (state) => state.wishlist.items.length
-export const selectIsInWishlist = (id) => (state) =>
-  state.wishlist.items.some((item) => item.id === id)
+export const selectIsWishlisted = (state, productId) =>
+  state.wishlist.items.some((item) => String(item.id) === String(productId))
 
 export default wishlistSlice.reducer

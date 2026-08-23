@@ -6,6 +6,9 @@ import Signup from "./components/auth/signup/SignUp.jsx"
 import Login from "./components/auth/login/Login.jsx"
 import Checkout from "./components/checkout/checkout.jsx"
 import OrderConfirmation from "./components/orderConfirmation/OrderConfirmation.jsx"
+import MyOrders from "./components/myOrders/MyOrders.jsx"
+import Wishlist from "./components/wishlist/Wishlist.jsx"
+import NotFound from "./components/common/NotFound.jsx"
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order-confirmation" element={<OrderConfirmation />} />
+        <Route path="/orders" element={<MyOrders />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   )

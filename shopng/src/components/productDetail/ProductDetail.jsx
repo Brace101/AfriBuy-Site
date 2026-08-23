@@ -2,10 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItem } from '../../store/cartSlice'
+import { toggleWishlist, selectIsWishlisted } from '../../store/wishlistSlice'
+import { addRecentlyViewed, selectRecentlyViewedExcluding } from '../../store/recentlyViewedSlice'
 import { useToast } from '../common/useToast'
 import { mapApiProduct } from '../../utils/mapApiProduct'
 import { formatNaira } from '../../utils/currency'
+import { getStockForProduct, isOutOfStock, isLowStock } from '../../utils/stock'
 import { Rating } from '../productHomePage/ProductCart'
+import Reviews from './Reviews'
+import RecentlyViewed from '../productHomePage/RecentlyViewed'
 import './productDetail.css'
 
 const ProductDetail = () => {
@@ -21,6 +26,9 @@ const ProductDetail = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
+  const isWishlisted = useSelector((state) => selectIsWishlisted(state, product?.id))
+  const recentlyViewed = useSelector((state) => selectRecentlyViewedExcluding(state, id))
+
   useEffect(() => {
     setLoading(true)
     setError(null)
@@ -34,8 +42,10 @@ const ProductDetail = () => {
       })
       .then((data) => {
         setRaw(data)
-        setProduct(mapApiProduct(data))
+        const mapped = mapApiProduct(data)
+        setProduct(mapped)
         setLoading(false)
+        dispatch(addRecentlyViewed(mapped))
         return fetch(`https://dummyjson.com/products/category/${data.category}?limit=7`)
       })
       .then((res) => (res ? res.json() : null))
@@ -55,8 +65,18 @@ const ProductDetail = () => {
 
   const handleAddToCart = () => {
     if (!product) return
+    if (isOutOfStock(product.id)) return
     dispatch(addItem(product))
     showToast(`${product.name} added to cart`, { icon: '🛒' })
+  }
+
+  const handleWishlistToggle = () => {
+    if (!product) return
+    dispatch(toggleWishlist(product))
+    showToast(
+      isWishlisted ? `Removed ${product.name} from wishlist` : `Saved ${product.name} to wishlist`,
+      { icon: isWishlisted ? '💔' : '❤️' }
+    )
   }
 
   if (loading) {
@@ -172,9 +192,27 @@ const ProductDetail = () => {
               {product.discount && <span className="discount-tag pd-inline-tag">-{product.discount}%</span>}
             </div>
 
-            <button className="pd-add-to-cart" onClick={handleAddToCart}>
-              🛒 Add to Cart
-            </button>
+            {isOutOfStock(product.id) ? (
+              <p className="pd-stock-note pd-stock-out">Out of stock</p>
+            ) : isLowStock(product.id) ? (
+              <p className="pd-stock-note pd-stock-low">Only {getStockForProduct(product.id)} left in stock — order soon</p>
+            ) : (
+              <p className="pd-stock-note pd-stock-in">In stock and ready to ship</p>
+            )}
+
+            <div className="pd-buybox-actions">
+              <button className="pd-add-to-cart" onClick={handleAddToCart} disabled={isOutOfStock(product.id)}>
+                {isOutOfStock(product.id) ? 'Sold Out' : '🛒 Add to Cart'}
+              </button>
+              <button
+                className={`pd-wishlist-btn ${isWishlisted ? 'active' : ''}`}
+                onClick={handleWishlistToggle}
+                aria-pressed={isWishlisted}
+                aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+              >
+                {isWishlisted ? '♥' : '♡'}
+              </button>
+            </div>
 
             <div className="pd-buybox-note">
               Questions about this product?{' '}
@@ -185,6 +223,8 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
+
+      <Reviews productId={id} />
 
       {related.length > 0 && (
         <div className="pd-related">
@@ -206,6 +246,15 @@ const ProductDetail = () => {
               </Link>
             ))}
           </div>
+        </div>
+      )}
+
+      {recentlyViewed.length > 0 && (
+        <div className="pd-recently-viewed">
+          <RecentlyViewed
+            items={recentlyViewed}
+            onAddToCart={(p) => { dispatch(addItem(p)); showToast(`${p.name} added to cart`, { icon: '🛒' }) }}
+          />
         </div>
       )}
     </div>
