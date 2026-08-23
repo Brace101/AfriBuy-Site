@@ -9,9 +9,9 @@ const footerLinks = {
 
 const socialLinks = [
   { name: 'X', icon: 'x-icon', href: '#' },
-  { name: 'GitHub', icon: 'github-icon', href: '#' },
+  { name: 'Instagram', icon: 'instagram-icon', href: '#' },
   { name: 'Discord', icon: 'discord-icon', href: '#' },
-  { name: 'Bluesky', icon: 'bluesky-icon', href: '#' },
+  { name: 'WhatsApp', icon: 'whatsapp-icon', href: '#' },
 ]
 
 const Footer = () => {

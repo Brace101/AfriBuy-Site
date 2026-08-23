@@ -23,7 +23,7 @@ import { useToast } from '../common/useToast'
 const BRANDS = [
   { name: 'VERSACE', logo: '/brand-logos/versace.svg' },
   { name: 'ZARA', logo: '/brand-logos/zara.svg' },
-  { name: 'GUCCI', logo: '/brand-logos/gucci.svg' },
+  { name: 'GUCCI', logo: '/brand-logos/gucci.png' },
   { name: 'PRADA', logo: '/brand-logos/prada.svg' },
   { name: 'RALPH LAUREN', logo: '/brand-logos/ralph-lauren.svg' },
   { name: 'ARMANI', logo: '/brand-logos/armani.svg' },
