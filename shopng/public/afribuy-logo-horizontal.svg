@@ -1,0 +1,61 @@
+<svg width="560" height="160" viewBox="0 0 560 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="bagClip">
+      <path d="M30 55
+               L47 30
+               Q52 22 60 22
+               Q68 22 73 30
+               L90 55
+               L100 55
+               L100 128
+               Q100 136 92 136
+               L28 136
+               Q20 136 20 128
+               L20 55
+               Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Icon: shopping bag with sunrise stripes (African-inspired) -->
+  <g>
+    <!-- bag body base -->
+    <path d="M30 55
+             L47 30
+             Q52 22 60 22
+             Q68 22 73 30
+             L90 55
+             L100 55
+             L100 128
+             Q100 136 92 136
+             L28 136
+             Q20 136 20 128
+             L20 55
+             Z"
+          fill="#14213D"/>
+
+    <!-- sunrise stripes clipped inside the bag -->
+    <g clip-path="url(#bagClip)">
+      <rect x="15" y="95" width="90" height="14" fill="#FCA311"/>
+      <rect x="15" y="112" width="90" height="10" fill="#FCA311" opacity="0.55"/>
+      <circle cx="60" cy="88" r="16" fill="#FCA311"/>
+    </g>
+
+    <!-- bag handle -->
+    <path d="M42 55
+             L42 46
+             Q42 30 60 30
+             Q78 30 78 46
+             L78 55"
+          fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="122" y="100" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="58" letter-spacing="-1">
+    <tspan fill="#14213D">Afri</tspan><tspan fill="#FCA311">Buy</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="124" y="124" font-family="Arial, Helvetica, sans-serif" font-weight="600" font-size="15" fill="#6B7280" letter-spacing="3">
+    STYLE FOR EVERY WARDROBE
+  </text>
+</svg>

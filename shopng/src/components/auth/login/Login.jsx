@@ -84,7 +84,7 @@ const Login = () => {
                 <div className="login-left-content">
                     <h2 className="login-left-heading">WELCOME<br/>BACK</h2>
                     <p className="login-left-text">
-                        Log in to pick up where you left off — track orders, revisit your wishlist, and keep shopping your style.
+                        Log in to pick up where you left off, track orders, revisit your wishlist, and keep shopping your style.
                     </p>
                     <div className="login-stats">
                         <div>

@@ -17,10 +17,12 @@ const SignUp = () => {
         email: '',
         phone: '',
         password: '',
+        confirmPassword: '',
     })
     const [errors, setErrors] = useState({})
     const [submitting, setSubmitting] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -39,6 +41,10 @@ const SignUp = () => {
         if (!formData.phone.trim()) newErrors.phone = 'Phone number is required.'
         if (!formData.password) newErrors.password = 'Password is required.'
         else if (formData.password.length < 8) newErrors.password = 'Password must be at least 8 characters.'
+        if (!formData.confirmPassword) newErrors.confirmPassword = 'Please confirm your password.'
+        else if (formData.password && formData.confirmPassword !== formData.password) {
+            newErrors.confirmPassword = 'Passwords do not match.'
+        }
         return newErrors
     }
 
@@ -81,7 +87,7 @@ const SignUp = () => {
                 <h1 className="signup-left-logo">AfriBuy</h1>
 
                 <div className="signup-left-content">
-                    <h2 className="signup-left-heading">JOIN THE<br/>MOVEMENT</h2>
+                    <h2 className="signup-left-heading">STYLE FOR EVERY<br/>WARDROPE</h2>
                     <p className="signup-left-text">
                         Create an account and unlock 20% off your first order, early access to drops, and style picks made for you.
                     </p>
@@ -199,6 +205,36 @@ const SignUp = () => {
                             </div>
                             {errors.password && (
                                 <p className="signup-error">{errors.password}</p>
+                            )}
+                        </div>
+
+                        <div>
+                            <label htmlFor="confirmPassword" className="signup-label">
+                                Confirm Password
+                            </label>
+                            <div className="signup-input-wrap">
+                                <span className="signup-input-icon">🔒</span>
+                                <input
+                                    id="confirmPassword"
+                                    name="confirmPassword"
+                                    type={showConfirmPassword ? 'text' : 'password'}
+                                    placeholder="••••••••"
+                                    value={formData.confirmPassword}
+                                    onChange={handleChange}
+                                    className={`signup-input signup-input-has-toggle ${errors.confirmPassword ? 'error' : ''}`}
+                                />
+                                <button
+                                    type="button"
+                                    className="signup-toggle-password"
+                                    onClick={() => setShowConfirmPassword((prev) => !prev)}
+                                    aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+                                    tabIndex={-1}
+                                >
+                                    {showConfirmPassword ? '🙈' : '👁️'}
+                                </button>
+                            </div>
+                            {errors.confirmPassword && (
+                                <p className="signup-error">{errors.confirmPassword}</p>
                             )}
                         </div>
 

@@ -1,0 +1,49 @@
+<svg width="360" height="100" viewBox="0 0 360 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="bagClipNav">
+      <path d="M15 35
+               L27 18
+               Q31 12 37 12
+               Q43 12 47 18
+               L59 35
+               L66 35
+               L66 84
+               Q66 90 60 90
+               L14 90
+               Q8 90 8 84
+               L8 35
+               Z"/>
+    </clipPath>
+  </defs>
+
+  <path d="M15 35
+           L27 18
+           Q31 12 37 12
+           Q43 12 47 18
+           L59 35
+           L66 35
+           L66 84
+           Q66 90 60 90
+           L14 90
+           Q8 90 8 84
+           L8 35
+           Z"
+        fill="#14213D"/>
+
+  <g clip-path="url(#bagClipNav)">
+    <rect x="6" y="60" width="62" height="10" fill="#FCA311"/>
+    <rect x="6" y="72" width="62" height="7" fill="#FCA311" opacity="0.55"/>
+    <circle cx="37" cy="55" r="11" fill="#FCA311"/>
+  </g>
+
+  <path d="M25 35
+           L25 29
+           Q25 18 37 18
+           Q49 18 49 29
+           L49 35"
+        fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+
+  <text x="82" y="65" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="42" letter-spacing="-1">
+    <tspan fill="#14213D">Afri</tspan><tspan fill="#FCA311">Buy</tspan>
+  </text>
+</svg>

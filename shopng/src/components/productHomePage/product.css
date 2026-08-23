@@ -24,11 +24,15 @@
 }
 
 .navbar{
-    @apply bg-white flex flex-wrap items-center justify-between px-4 md:px-8 py-4 gap-3 md:gap-8;
+    @apply bg-white flex flex-wrap items-center justify-between px-4 md:px-8 py-4 gap-3 md:gap-8 sticky top-0 z-40 shadow-sm;
 }
 
 .logo h1{
     @apply text-xl md:text-2xl font-black tracking-tight text-[var(--color-brand-primary)];
+}
+
+.logo-img{
+    @apply h-12 md:h-14 w-auto object-contain;
 }
 
 .nav-links{
@@ -84,7 +88,23 @@
 }
 
 .nav-icons{
-    @apply order-2 md:order-none flex items-center gap-4 text-xl ml-auto md:ml-0 text-[var(--color-brand-primary)];
+    @apply order-2 md:order-none flex items-center gap-5 ml-auto md:ml-0 text-gray-800;
+}
+
+.nav-icon-item{
+    @apply flex items-center gap-1.5 bg-transparent border-none p-0 cursor-pointer text-sm font-medium text-gray-800 hover:text-[var(--color-brand-primary)] transition-colors leading-none;
+}
+
+.nav-icon-label{
+    @apply hidden sm:inline;
+}
+
+.nav-icon-caret{
+    @apply text-gray-500;
+}
+
+.nav-icon-cart-wrap{
+    @apply relative flex items-center;
 }
 
 .hero{
@@ -267,6 +287,10 @@
     @apply absolute -top-2 -right-2 bg-[var(--color-brand-secondary)] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold;
 }
 
+.help-menu-wrap{
+    @apply relative;
+}
+
 .account-menu-wrap{
     @apply relative;
 }
@@ -439,6 +463,14 @@
 
 .social-icons span{
     @apply w-8 h-8 rounded-full bg-[var(--color-brand-primary)] text-white flex items-center justify-center text-xs cursor-pointer hover:bg-[var(--color-brand-secondary)] transition-colors;
+}
+
+.social-icon-link{
+    @apply w-8 h-8 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center cursor-pointer hover:bg-[var(--color-brand-secondary)] transition-colors;
+}
+
+.social-icon-link svg{
+    filter: brightness(0) invert(1);
 }
 
 .footer-column h3{

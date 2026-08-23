@@ -27,8 +27,10 @@ const Product = () => {
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [isFlyerVisible, setIsFlyerVisible] = useState(true)
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false)
+  const [isHelpMenuOpen, setIsHelpMenuOpen] = useState(false)
 
   const accountMenuRef = useRef(null)
+  const helpMenuRef = useRef(null)
   const newArrivalsRef = useRef(null)
   const topSellingRef = useRef(null)
   const brandsRef = useRef(null)
@@ -43,6 +45,9 @@ const Product = () => {
     const handleClickOutside = (e) => {
       if (accountMenuRef.current && !accountMenuRef.current.contains(e.target)) {
         setIsAccountMenuOpen(false)
+      }
+      if (helpMenuRef.current && !helpMenuRef.current.contains(e.target)) {
+        setIsHelpMenuOpen(false)
       }
     }
     document.addEventListener('mousedown', handleClickOutside)
@@ -96,7 +101,9 @@ const Product = () => {
       )}
 
       <div className="navbar">
-        <div className="logo"><h1>AfriBuy</h1></div>
+        <div className="logo">
+          <img src="/afribuy-logo-nav.svg" alt="AfriBuy" className="logo-img" />
+        </div>
         <div>
           <ul className="nav-links">
             <li onClick={() => scrollToSection(newArrivalsRef)}>Shop <span className="caret">▾</span></li>
@@ -109,22 +116,24 @@ const Product = () => {
         <SearchBar allProducts={allProducts} onSelectResult={handleSelectSearchResult} />
 
         <div className="nav-icons">
-          <button className="cart-icon-btn" onClick={() => setIsCartOpen(true)} aria-label="Open cart">
-            🛒
-            {cartItemCount > 0 && <span className="cart-badge">{cartItemCount}</span>}
-          </button>
-
           <div className="account-menu-wrap" ref={accountMenuRef}>
             <button
-              className="account-icon-btn"
+              className="nav-icon-item"
               onClick={() => setIsAccountMenuOpen((open) => !open)}
               aria-label="Account menu"
             >
               {currentUser ? (
                 <span className="account-avatar">{currentUser.fullName.trim().charAt(0).toUpperCase()}</span>
               ) : (
-                <span className="text-xl">👤</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 21a8 8 0 0 0-16 0" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
               )}
+              <span className="nav-icon-label">Account</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nav-icon-caret">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
             </button>
 
             {isAccountMenuOpen && (
@@ -150,6 +159,50 @@ const Product = () => {
               </div>
             )}
           </div>
+
+          <div className="help-menu-wrap" ref={helpMenuRef}>
+            <button
+              className="nav-icon-item"
+              onClick={() => setIsHelpMenuOpen((open) => !open)}
+              aria-label="Help menu"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 2-3 4" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+              <span className="nav-icon-label">Help</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nav-icon-caret">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+
+            {isHelpMenuOpen && (
+              <div className="account-dropdown">
+                <a href="#" className="account-dropdown-link" onClick={() => setIsHelpMenuOpen(false)}>
+                  Customer Support
+                </a>
+                <a href="#" className="account-dropdown-link" onClick={() => setIsHelpMenuOpen(false)}>
+                  Delivery Details
+                </a>
+                <a href="#" className="account-dropdown-link" onClick={() => setIsHelpMenuOpen(false)}>
+                  FAQs
+                </a>
+              </div>
+            )}
+          </div>
+
+          <button className="nav-icon-item nav-icon-cart" onClick={() => setIsCartOpen(true)} aria-label="Open cart">
+            <span className="nav-icon-cart-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="9" cy="21" r="1" />
+                <circle cx="20" cy="21" r="1" />
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+              </svg>
+              {cartItemCount > 0 && <span className="cart-badge">{cartItemCount}</span>}
+            </span>
+            <span className="nav-icon-label">Cart</span>
+          </button>
         </div>
       </div>
 
@@ -193,6 +246,11 @@ const Product = () => {
         <span>ZARA</span>
         <span>GUCCI</span>
         <span>PRADA</span>
+        <span>RALPH LAUREN</span>
+        <span>ARMANI</span>
+        <span>HUGO BOSS</span>
+        <span>BURBERRY</span>
+        <span>LOUIS VUITTON</span>
         <span>CALVIN KLIEN</span>
       </div>
 
