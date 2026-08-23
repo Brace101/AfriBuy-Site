@@ -143,6 +143,14 @@
     @apply w-full bg-[var(--color-brand-secondary)] text-[var(--color-brand-primary)] font-semibold rounded-lg py-3 cursor-pointer hover:bg-[var(--color-brand-primary)] hover:text-white transition-colors flex items-center justify-center gap-2 mt-1;
 }
 
+.pd-wishlist-btn{
+    @apply w-full bg-white text-[var(--color-brand-primary)] font-semibold rounded-lg py-3 cursor-pointer border border-gray-300 hover:border-[var(--color-brand-primary)] transition-colors flex items-center justify-center gap-2 mt-2;
+}
+
+.pd-wishlist-btn.active{
+    @apply border-[var(--color-brand-secondary)] bg-[var(--color-brand-secondary)]/10;
+}
+
 .pd-buybox-note{
     @apply text-xs text-gray-500 border-t border-gray-100 pt-3 mt-1;
 }

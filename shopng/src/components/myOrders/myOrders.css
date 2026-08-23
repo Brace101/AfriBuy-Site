@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #14213D;
+  --color-brand-secondary: #FCA311;
+  --color-brand-tint: #E5E5E5;
+}
+
+.mo-page{
+    @apply min-h-screen bg-gray-50;
+}
+
+.mo-topbar{
+    @apply bg-white flex items-center justify-between px-4 md:px-8 py-4 border-b border-gray-200;
+}
+
+.mo-logo{
+    @apply no-underline flex items-center;
+}
+
+.mo-logo-img{
+    @apply h-9 md:h-10 w-auto object-contain;
+}
+
+.mo-back{
+    @apply text-sm font-medium text-gray-600 hover:text-[var(--color-brand-primary)] no-underline;
+}
+
+.mo-header{
+    @apply px-4 md:px-8 pt-8 pb-4;
+}
+
+.mo-header h1{
+    @apply text-2xl md:text-3xl font-black text-[var(--color-brand-primary)];
+}
+
+.mo-header p{
+    @apply text-sm text-gray-500 mt-1;
+}
+
+.mo-empty{
+    @apply flex flex-col items-center justify-center text-center gap-3 py-20 px-4;
+}
+
+.mo-empty-icon{
+    @apply text-5xl mb-2;
+}
+
+.mo-empty h2{
+    @apply text-lg font-bold text-gray-800;
+}
+
+.mo-empty p{
+    @apply text-sm text-gray-500 max-w-xs;
+}
+
+.mo-empty-cta{
+    @apply mt-3 bg-[var(--color-brand-secondary)] text-[var(--color-brand-primary)] rounded-full px-8 py-3 font-semibold no-underline hover:bg-[var(--color-brand-primary)] hover:text-white transition-colors;
+}
+
+.mo-list{
+    @apply flex flex-col gap-3 px-4 md:px-8 pb-14 max-w-3xl;
+}
+
+.mo-card{
+    @apply bg-white border border-gray-200 rounded-xl overflow-hidden;
+}
+
+.mo-card-summary{
+    @apply w-full flex flex-wrap items-center justify-between gap-2 px-4 md:px-5 py-4 bg-transparent border-none cursor-pointer text-left;
+}
+
+.mo-order-id{
+    @apply font-bold text-sm md:text-base text-gray-900;
+}
+
+.mo-order-date{
+    @apply text-xs text-gray-500 mt-0.5;
+}
+
+.mo-card-summary-meta{
+    @apply flex items-center gap-3;
+}
+
+.mo-status{
+    @apply text-[11px] font-semibold uppercase tracking-wide px-2.5 py-1 rounded-full bg-green-100 text-green-700;
+}
+
+.mo-status-confirmed{
+    @apply bg-green-100 text-green-700;
+}
+
+.mo-order-total{
+    @apply font-bold text-sm text-[var(--color-brand-primary)];
+}
+
+.mo-chevron{
+    @apply text-gray-400 text-xs;
+}
+
+.mo-card-detail{
+    @apply border-t border-gray-100 px-4 md:px-5 py-4;
+}
+
+.mo-detail-items{
+    @apply flex flex-col gap-3 mb-4;
+}
+
+.mo-detail-item{
+    @apply flex items-center gap-3;
+}
+
+.mo-detail-item img{
+    @apply w-14 h-14 rounded-md object-contain bg-gray-50 border border-gray-100 p-1;
+}
+
+.mo-detail-item-info{
+    @apply flex-1 min-w-0;
+}
+
+.mo-detail-item-name{
+    @apply text-sm font-medium text-gray-800 truncate;
+}
+
+.mo-detail-item-variant{
+    @apply text-[11px] text-gray-500;
+}
+
+.mo-detail-item-qty{
+    @apply text-xs text-gray-500;
+}
+
+.mo-detail-item-price{
+    @apply text-sm font-semibold text-gray-900 whitespace-nowrap;
+}
+
+.mo-detail-totals{
+    @apply border-t border-gray-100 pt-3 mb-4;
+}
+
+.mo-detail-total-row{
+    @apply flex items-center justify-between text-sm text-gray-600 py-1;
+}
+
+.mo-detail-discount{
+    @apply text-green-600;
+}
+
+.mo-detail-final{
+    @apply text-base font-black text-[var(--color-brand-primary)] pt-2;
+}
+
+.mo-detail-address{
+    @apply bg-[var(--color-brand-tint)] rounded-lg p-3 text-xs text-gray-700 leading-relaxed;
+}
+
+.mo-detail-label{
+    @apply font-semibold text-gray-800 mb-1;
+}

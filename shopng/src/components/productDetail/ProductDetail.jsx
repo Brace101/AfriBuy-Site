@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addItem } from '../../store/cartSlice'
+import { toggleItem, selectIsInWishlist } from '../../store/wishlistSlice'
 import { useToast } from '../common/useToast'
 import { mapApiProduct } from '../../utils/mapApiProduct'
 import { formatNaira } from '../../utils/currency'
@@ -53,10 +54,21 @@ const ProductDetail = () => {
       })
   }, [id])
 
+  const isWishlisted = useSelector(selectIsInWishlist(product?.id))
+
   const handleAddToCart = () => {
     if (!product) return
     dispatch(addItem(product))
     showToast(`${product.name} added to cart`, { icon: '🛒' })
+  }
+
+  const handleToggleWishlist = () => {
+    if (!product) return
+    dispatch(toggleItem(product))
+    showToast(
+      isWishlisted ? `${product.name} removed from wishlist` : `${product.name} added to wishlist`,
+      { icon: isWishlisted ? '💔' : '❤️' }
+    )
   }
 
   if (loading) {
@@ -174,6 +186,13 @@ const ProductDetail = () => {
 
             <button className="pd-add-to-cart" onClick={handleAddToCart}>
               🛒 Add to Cart
+            </button>
+
+            <button
+              className={`pd-wishlist-btn ${isWishlisted ? 'active' : ''}`}
+              onClick={handleToggleWishlist}
+            >
+              {isWishlisted ? '❤️ Added to Wishlist' : '🤍 Add to Wishlist'}
             </button>
 
             <div className="pd-buybox-note">

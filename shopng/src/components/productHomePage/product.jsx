@@ -11,6 +11,7 @@ import './product.css'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItem, selectCartCount } from '../../store/cartSlice'
+import { selectWishlistCount } from '../../store/wishlistSlice'
 import { selectCurrentUser, logout } from '../../store/authSlice'
 import { useToast } from '../common/useToast'
 
@@ -19,6 +20,7 @@ const Product = () => {
   const { showToast } = useToast()
   const currentUser = useSelector(selectCurrentUser)
   const cartItemCount = useSelector(selectCartCount)
+  const wishlistCount = useSelector(selectWishlistCount)
 
   const [newArrivals, setNewArrivals] = useState([])
   const [topSelling, setTopSelling] = useState([])
@@ -192,6 +194,16 @@ const Product = () => {
             )}
           </div>
 
+          <Link to="/wishlist" className="nav-icon-item nav-icon-cart">
+            <span className="nav-icon-cart-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+              </svg>
+              {wishlistCount > 0 && <span className="cart-badge">{wishlistCount}</span>}
+            </span>
+            <span className="nav-icon-label">Wishlist</span>
+          </Link>
+
           <button className="nav-icon-item nav-icon-cart" onClick={() => setIsCartOpen(true)} aria-label="Open cart">
             <span className="nav-icon-cart-wrap">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
@@ -207,7 +219,21 @@ const Product = () => {
       </div>
 
       <div className="hero">
+        <svg className="sparkle sparkle-wide-left" width="40" height="40" viewBox="0 0 104 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M52 0C52 28.7188 75.2812 52 104 52C75.2812 52 52 75.2812 52 104C52 75.2812 28.7188 52 0 52C28.7188 52 52 28.7188 52 0Z" fill="black"/>
+        </svg>
+        <svg className="sparkle sparkle-wide-right" width="64" height="64" viewBox="0 0 104 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M52 0C52 28.7188 75.2812 52 104 52C75.2812 52 52 75.2812 52 104C52 75.2812 28.7188 52 0 52C28.7188 52 52 28.7188 52 0Z" fill="black"/>
+        </svg>
         <div className="hero-inner">
+          <div className="hero-highlight-badge">
+            <span className="hero-highlight-icon">🚚</span>
+            <div>
+              <p className="hero-highlight-title">Free Delivery</p>
+              <p className="hero-highlight-sub">On orders over ₦50,000</p>
+            </div>
+          </div>
+
           <div className="hero-text">
             <h1>FIND CLOTHES<br />THAT MATCHES<br />YOUR STYLE</h1>
             <p>Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.</p>
@@ -230,6 +256,7 @@ const Product = () => {
           </div>
 
           <div className="hero-image">
+            <div className="hero-image-backdrop" aria-hidden="true" />
             <svg className="sparkle sparkle-1" width="104" height="104" viewBox="0 0 104 104" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M52 0C52 28.7188 75.2812 52 104 52C75.2812 52 52 75.2812 52 104C52 75.2812 28.7188 52 0 52C28.7188 52 52 28.7188 52 0Z" fill="black"/>
             </svg>
@@ -242,16 +269,28 @@ const Product = () => {
       </div>
 
       <div className="brands" ref={brandsRef}>
-        <span>VERSACE</span>
-        <span>ZARA</span>
-        <span>GUCCI</span>
-        <span>PRADA</span>
-        <span>RALPH LAUREN</span>
-        <span>ARMANI</span>
-        <span>HUGO BOSS</span>
-        <span>BURBERRY</span>
-        <span>LOUIS VUITTON</span>
-        <span>CALVIN KLIEN</span>
+        <div className="brands-track">
+          <span>VERSACE</span>
+          <span>ZARA</span>
+          <span>GUCCI</span>
+          <span>PRADA</span>
+          <span>RALPH LAUREN</span>
+          <span>ARMANI</span>
+          <span>HUGO BOSS</span>
+          <span>BURBERRY</span>
+          <span>LOUIS VUITTON</span>
+          <span>CALVIN KLIEN</span>
+          <span aria-hidden="true">VERSACE</span>
+          <span aria-hidden="true">ZARA</span>
+          <span aria-hidden="true">GUCCI</span>
+          <span aria-hidden="true">PRADA</span>
+          <span aria-hidden="true">RALPH LAUREN</span>
+          <span aria-hidden="true">ARMANI</span>
+          <span aria-hidden="true">HUGO BOSS</span>
+          <span aria-hidden="true">BURBERRY</span>
+          <span aria-hidden="true">LOUIS VUITTON</span>
+          <span aria-hidden="true">CALVIN KLIEN</span>
+        </div>
       </div>
 
       <div ref={newArrivalsRef}>

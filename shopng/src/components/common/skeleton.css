@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+.skeleton-block{
+    @apply bg-gray-200 rounded animate-pulse;
+}
+
+.skeleton-card{
+    @apply pointer-events-none;
+}
+
+.skeleton-image{
+    @apply aspect-square rounded-md mb-1.5 w-full;
+}
+
+.skeleton-line{
+    @apply h-2.5 mb-1.5;
+}
+
+.skeleton-line-title{
+    @apply w-4/5;
+}
+
+.skeleton-line-rating{
+    @apply w-2/5 h-2;
+}
+
+.skeleton-line-price{
+    @apply w-1/2;
+}
+
+.skeleton-btn{
+    @apply h-6 md:h-7 w-full rounded-md mt-1.5;
+}

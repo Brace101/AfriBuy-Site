@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { formatNaira } from '../../utils/currency'
+import { toggleItem, selectIsInWishlist } from '../../store/wishlistSlice'
+import { useToast } from '../common/useToast'
 
 export const Star = ({ filled, half }) => {
   if (half) return <span className="star half">★</span>
@@ -24,13 +27,33 @@ export const Rating = ({ value = 0 }) => {
 }
 
 const ProductCard = ({ product, onAddToCart }) => {
+  const dispatch = useDispatch()
+  const { showToast } = useToast()
+  const isWishlisted = useSelector(selectIsInWishlist(product?.id))
+
   if (!product) return null
+
+  const handleToggleWishlist = (e) => {
+    e.preventDefault()
+    dispatch(toggleItem(product))
+    showToast(
+      isWishlisted ? `${product.name} removed from wishlist` : `${product.name} added to wishlist`,
+      { icon: isWishlisted ? '💔' : '❤️' }
+    )
+  }
 
   return (
     <div className="product-card">
       <Link to={`/product/${product.id}`} className="product-card-link">
         <div className="product-image">
           {product.discount && <span className="discount-tag">-{product.discount}%</span>}
+          <button
+            className={`wishlist-heart-btn ${isWishlisted ? 'active' : ''}`}
+            onClick={handleToggleWishlist}
+            aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+          >
+            {isWishlisted ? '❤️' : '🤍'}
+          </button>
           <img src={product.image} alt={product.name || 'Product Image'} />
         </div>
         <h3 className="product-name">{product.name}</h3>

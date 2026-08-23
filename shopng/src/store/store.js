@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./cartSlice";
 import authReducer from "./authSlice";
 import ordersReducer from "./ordersSlice";
+import wishlistReducer from "./wishlistSlice";
 import { loadState, saveState } from "../utils/storage";
 
 const persistedState = loadState();
@@ -11,6 +12,7 @@ const store = configureStore({
     cart: cartReducer,
     auth: authReducer,
     orders: ordersReducer,
+    wishlist: wishlistReducer,
   },
   preloadedState: persistedState,
 });
@@ -28,6 +30,7 @@ store.subscribe(() => {
       cart: state.cart,
       auth: state.auth,
       orders: state.orders,
+      wishlist: state.wishlist,
     })
   })
 })
