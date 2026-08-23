@@ -33,6 +33,7 @@ const Product = () => {
 
   const accountMenuRef = useRef(null)
   const mobileAccountMenuRef = useRef(null)
+  const mobileAccountDropdownRef = useRef(null)
   const helpMenuRef = useRef(null)
   const newArrivalsRef = useRef(null)
   const topSellingRef = useRef(null)
@@ -48,7 +49,8 @@ const Product = () => {
     const handleClickOutside = (e) => {
       const insideAccountMenu =
         (accountMenuRef.current && accountMenuRef.current.contains(e.target)) ||
-        (mobileAccountMenuRef.current && mobileAccountMenuRef.current.contains(e.target))
+        (mobileAccountMenuRef.current && mobileAccountMenuRef.current.contains(e.target)) ||
+        (mobileAccountDropdownRef.current && mobileAccountDropdownRef.current.contains(e.target))
       if (!insideAccountMenu) {
         setIsAccountMenuOpen(false)
       }
@@ -253,42 +255,46 @@ const Product = () => {
           <span className="mobile-tab-label">Cart</span>
         </button>
 
-        <div className="mobile-tab-item mobile-account-wrap" ref={mobileAccountMenuRef}>
-          <button className="mobile-tab-btn" onClick={() => setIsAccountMenuOpen((open) => !open)} aria-label="Account menu">
-            {currentUser ? (
-              <span className="mobile-tab-avatar">{currentUser.fullName.trim().charAt(0).toUpperCase()}</span>
-            ) : (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20 21a8 8 0 0 0-16 0" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
-            )}
-            <span className="mobile-tab-label">Account</span>
-          </button>
-
-          {isAccountMenuOpen && (
-            <div className="account-dropdown mobile-account-dropdown">
-              {currentUser ? (
-                <>
-                  <p className="account-dropdown-greeting">Hi, {currentUser.fullName.split(' ')[0]}</p>
-                  <p className="account-dropdown-email">{currentUser.email}</p>
-                  <button className="account-dropdown-signout" onClick={handleSignOut}>
-                    Sign Out
-                  </button>
-                </>
-              ) : (
-                <>
-                  <Link to="/login" className="account-dropdown-link" onClick={() => setIsAccountMenuOpen(false)}>
-                    Log In
-                  </Link>
-                  <Link to="/signup" className="account-dropdown-link" onClick={() => setIsAccountMenuOpen(false)}>
-                    Sign Up
-                  </Link>
-                </>
-              )}
-            </div>
+        <button
+          type="button"
+          ref={mobileAccountMenuRef}
+          className="mobile-tab-item"
+          onClick={() => setIsAccountMenuOpen((open) => !open)}
+          aria-label="Account menu"
+        >
+          {currentUser ? (
+            <span className="mobile-tab-avatar">{currentUser.fullName.trim().charAt(0).toUpperCase()}</span>
+          ) : (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M20 21a8 8 0 0 0-16 0" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
           )}
-        </div>
+          <span className="mobile-tab-label">Account</span>
+        </button>
+
+        {isAccountMenuOpen && (
+          <div ref={mobileAccountDropdownRef} className="account-dropdown mobile-account-dropdown">
+            {currentUser ? (
+              <>
+                <p className="account-dropdown-greeting">Hi, {currentUser.fullName.split(' ')[0]}</p>
+                <p className="account-dropdown-email">{currentUser.email}</p>
+                <button className="account-dropdown-signout" onClick={handleSignOut}>
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="account-dropdown-link" onClick={() => setIsAccountMenuOpen(false)}>
+                  Log In
+                </Link>
+                <Link to="/signup" className="account-dropdown-link" onClick={() => setIsAccountMenuOpen(false)}>
+                  Sign Up
+                </Link>
+              </>
+            )}
+          </div>
+        )}
       </nav>
 
       <div className="hero">

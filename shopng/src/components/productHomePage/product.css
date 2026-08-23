@@ -125,10 +125,6 @@
     @apply text-[var(--color-brand-primary)];
 }
 
-.mobile-tab-btn{
-    @apply flex flex-col items-center justify-center gap-1 bg-transparent border-none p-0 text-gray-600 text-[11px] font-medium cursor-pointer w-full;
-}
-
 .mobile-tab-label{
     @apply leading-none;
 }
@@ -145,12 +141,8 @@
     @apply absolute -top-1.5 -right-2 bg-[var(--color-brand-secondary)] text-white text-[9px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold;
 }
 
-.mobile-account-wrap{
-    @apply relative;
-}
-
 .mobile-account-dropdown{
-    @apply absolute bottom-full right-0 mb-2 left-auto;
+    @apply absolute bottom-full right-2 mb-2;
 }
 
 .hero{
