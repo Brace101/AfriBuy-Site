@@ -188,11 +188,32 @@
 }
 
 .hero-highlight-badge{
-    @apply hidden xl:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-3 bg-white rounded-2xl shadow-lg px-5 py-4 border border-gray-100 max-w-[220px];
+    @apply absolute z-20 bottom-1 right-1 scale-[0.62] origin-bottom-right
+           sm:bottom-3 sm:right-3 sm:scale-75
+           md:bottom-5 md:right-5 md:scale-90
+           xl:left-1/2 xl:top-1/2 xl:right-auto xl:bottom-auto xl:scale-100 xl:-translate-x-1/2 xl:-translate-y-1/2 xl:origin-center;
 }
 
-.hero-highlight-icon{
-    @apply text-2xl;
+.hero-highlight-swing{
+    @apply relative flex flex-col items-center;
+    transform-origin: top center;
+    animation: tag-swing 4.5s ease-in-out infinite;
+}
+
+.hero-highlight-bag{
+    @apply w-11 h-11 relative z-10 drop-shadow-md;
+}
+
+.hero-highlight-string{
+    @apply w-px h-3 bg-[var(--color-brand-primary)]/30;
+}
+
+.hero-highlight-card{
+    @apply relative flex flex-col items-center text-center gap-0.5 bg-white rounded-2xl shadow-lg px-5 py-4 border border-gray-100 max-w-[220px];
+}
+
+.hero-highlight-hole{
+    @apply absolute -top-1.5 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[var(--color-brand-tint)] border border-gray-200;
 }
 
 .hero-highlight-title{
@@ -201,6 +222,17 @@
 
 .hero-highlight-sub{
     @apply text-xs text-gray-500;
+}
+
+@keyframes tag-swing{
+    0%, 100%{ transform: rotate(-4deg); }
+    50%{ transform: rotate(4deg); }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .hero-highlight-swing{
+        animation: none;
+    }
 }
 
 .brands{

@@ -84,7 +84,7 @@ const SignUp = () => {
                 </div>
                 <div className="signup-left-gradient" />
 
-                <h1 className="signup-left-logo">AfriBuy</h1>
+                <Link to="/" className="signup-left-logo">AfriBuy</Link>
 
                 <div className="signup-left-content">
                     <h2 className="signup-left-heading">STYLE FOR EVERY<br/>WARDROPE</h2>
@@ -107,7 +107,7 @@ const SignUp = () => {
             {/* Right form panel */}
             <div className="signup-right-panel">
                 <div className="signup-form-wrap">
-                    <h1 className="signup-mobile-logo">AfriBuy</h1>
+                    <Link to="/" className="signup-mobile-logo">AfriBuy</Link>
 
                     <h2 className="signup-title">Create an Account</h2>
                     <p className="signup-subtitle">

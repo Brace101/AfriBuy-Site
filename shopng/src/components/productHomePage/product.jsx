@@ -266,14 +266,6 @@ const Product = () => {
           <path d="M52 0C52 28.7188 75.2812 52 104 52C75.2812 52 52 75.2812 52 104C52 75.2812 28.7188 52 0 52C28.7188 52 52 28.7188 52 0Z" fill="black"/>
         </svg>
         <div className="hero-inner">
-          <div className="hero-highlight-badge">
-            <span className="hero-highlight-icon">🚚</span>
-            <div>
-              <p className="hero-highlight-title">Free Delivery</p>
-              <p className="hero-highlight-sub">On orders over ₦50,000</p>
-            </div>
-          </div>
-
           <div className="hero-text">
             <h1>FIND CLOTHES<br />THAT MATCHES<br />YOUR STYLE</h1>
             <p>Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.</p>
@@ -304,6 +296,47 @@ const Product = () => {
               <path d="M28 0C28 15.464 40.536 28 56 28C40.536 28 28 40.536 28 56C28 40.536 15.464 28 0 28C15.464 28 28 15.464 28 0Z" fill="black"/>
             </svg>
             <img src="/models.png" alt="Models wearing denim jackets" />
+
+            <div className="hero-highlight-badge">
+              <div className="hero-highlight-swing">
+                <svg
+                  className="hero-highlight-bag"
+                  viewBox="0 0 48 48"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M18 18v-3.5a6 6 0 0 1 12 0V18"
+                    stroke="var(--color-brand-primary)"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M14 18h20l-1.8 22.5a3 3 0 0 1-3 2.75H18.8a3 3 0 0 1-3-2.75L14 18Z"
+                    fill="var(--color-brand-secondary)"
+                    stroke="var(--color-brand-primary)"
+                    strokeWidth="1.5"
+                    strokeLinejoin="round"
+                  />
+                  <line
+                    x1="14.6"
+                    y1="25"
+                    x2="33.4"
+                    y2="25"
+                    stroke="var(--color-brand-primary)"
+                    strokeOpacity="0.25"
+                    strokeWidth="1.5"
+                  />
+                </svg>
+                <span className="hero-highlight-string" aria-hidden="true" />
+                <div className="hero-highlight-card">
+                  <span className="hero-highlight-hole" aria-hidden="true" />
+                  <p className="hero-highlight-title">Free Delivery</p>
+                  <p className="hero-highlight-sub">On orders over ₦50,000</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

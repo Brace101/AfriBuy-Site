@@ -79,7 +79,7 @@ const Login = () => {
                 </div>
                 <div className="login-left-gradient" />
 
-                <h1 className="login-left-logo">AfriBuy</h1>
+                <Link to="/" className="login-left-logo">AfriBuy</Link>
 
                 <div className="login-left-content">
                     <h2 className="login-left-heading">WELCOME<br/>BACK</h2>
@@ -102,7 +102,7 @@ const Login = () => {
             {/* Right form panel */}
             <div className="login-right-panel">
                 <div className="login-form-wrap">
-                    <h1 className="login-mobile-logo">AfriBuy</h1>
+                    <Link to="/" className="login-mobile-logo">AfriBuy</Link>
 
                     <h2 className="login-title">Welcome Back</h2>
                     <p className="login-subtitle">
