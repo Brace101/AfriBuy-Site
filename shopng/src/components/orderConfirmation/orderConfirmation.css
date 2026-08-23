@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-primary: #8c323f;
-  --color-brand-secondary: #a26d65;
-  --color-brand-tint: #f8f1f1;
+  --color-brand-primary: #14213D;
+  --color-brand-secondary: #FCA311;
+  --color-brand-tint: #E5E5E5;
 }
 
 .confirmation-page {
@@ -83,5 +83,5 @@
 }
 
 .confirmation-continue-btn {
-  @apply w-full bg-[var(--color-brand-primary)] text-white font-semibold rounded-full py-4 hover:bg-[var(--color-brand-secondary)] transition-all shadow-md active:scale-[0.99] cursor-pointer no-underline text-center;
+  @apply w-full bg-[var(--color-brand-secondary)] text-[var(--color-brand-primary)] font-semibold rounded-full py-4 hover:bg-[var(--color-brand-primary)] hover:text-white transition-all shadow-md active:scale-[0.99] cursor-pointer no-underline text-center;
 }

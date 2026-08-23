@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-primary: #8c323f;
-  --color-brand-secondary: #a26d65;
-  --color-brand-light: #c29896;
-  --color-brand-tint: #f8f1f1;
+  --color-brand-primary: #14213D;
+  --color-brand-secondary: #FCA311;
+  --color-brand-light: #E5E5E5;
+  --color-brand-tint: #E5E5E5;
 }
 
 .signup-page{
@@ -120,7 +120,7 @@
 }
 
 .signup-submit{
-    @apply w-full bg-[var(--color-brand-primary)] text-white rounded-full py-5 text-lg font-semibold mt-4 cursor-pointer hover:bg-[var(--color-brand-secondary)] active:scale-[0.99] transition-all shadow-lg shadow-[var(--color-brand-primary)]/20 disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100;
+    @apply w-full bg-[var(--color-brand-secondary)] text-[var(--color-brand-primary)] rounded-full py-5 text-lg font-semibold mt-4 cursor-pointer hover:bg-[var(--color-brand-primary)] hover:text-white active:scale-[0.99] transition-all shadow-lg shadow-[var(--color-brand-primary)]/20 disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100;
 }
 
 .signup-footer{
