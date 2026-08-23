@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #14213D;
+  --color-brand-secondary: #FCA311;
+  --color-brand-tint: #E5E5E5;
+}
+
+.confirmation-page {
+  @apply min-h-screen bg-gray-50 flex items-center justify-center px-4 py-12;
+}
+
+.confirmation-card {
+  @apply w-full max-w-xl bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-10 flex flex-col items-center text-center;
+}
+
+.confirmation-check {
+  @apply w-16 h-16 rounded-full bg-green-100 text-green-600 text-3xl font-bold flex items-center justify-center mb-4;
+}
+
+.confirmation-title {
+  @apply text-2xl md:text-3xl font-black text-gray-900 mb-2;
+}
+
+.confirmation-subtitle {
+  @apply text-sm text-gray-600 mb-6;
+}
+
+.confirmation-meta {
+  @apply w-full grid grid-cols-1 sm:grid-cols-3 gap-4 bg-[var(--color-brand-tint)] rounded-xl p-4 mb-6 text-left;
+}
+
+.confirmation-meta-label {
+  @apply block text-[11px] uppercase tracking-wide text-gray-500 font-semibold mb-1;
+}
+
+.confirmation-meta-value {
+  @apply block text-sm font-bold text-gray-900;
+}
+
+.confirmation-items {
+  @apply w-full flex flex-col gap-3 mb-4 text-left max-h-56 overflow-y-auto pr-1;
+}
+
+.confirmation-item {
+  @apply flex items-center gap-3;
+}
+
+.confirmation-item img {
+  @apply w-12 h-12 rounded-lg object-contain bg-gray-50 border border-gray-100 p-1 flex-shrink-0;
+}
+
+.confirmation-item-info {
+  @apply flex-1 min-w-0;
+}
+
+.confirmation-item-name {
+  @apply text-sm font-medium text-gray-800 truncate;
+}
+
+.confirmation-item-qty {
+  @apply text-xs text-gray-500;
+}
+
+.confirmation-item-price {
+  @apply text-sm font-bold text-gray-900;
+}
+
+.confirmation-totals {
+  @apply w-full border-t border-gray-100 pt-4 mb-6 text-left;
+}
+
+.confirmation-total-row {
+  @apply flex items-center justify-between text-sm text-gray-600 py-1;
+}
+
+.confirmation-total-final {
+  @apply text-base font-black text-gray-900 pt-2;
+}
+
+.confirmation-address {
+  @apply w-full text-left bg-gray-50 rounded-xl p-4 mb-8 text-sm text-gray-700 leading-relaxed;
+}
+
+.confirmation-continue-btn {
+  @apply w-full bg-[var(--color-brand-secondary)] text-[var(--color-brand-primary)] font-semibold rounded-full py-4 hover:bg-[var(--color-brand-primary)] hover:text-white transition-all shadow-md active:scale-[0.99] cursor-pointer no-underline text-center;
+}

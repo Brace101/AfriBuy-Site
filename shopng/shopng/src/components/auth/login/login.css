@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #14213D;
+  --color-brand-secondary: #FCA311;
+  --color-brand-light: #E5E5E5;
+  --color-brand-tint: #E5E5E5;
+}
+
+.login-page{
+    @apply min-h-screen bg-white flex;
+}
+
+/* Left branded panel */
+
+.login-left-panel{
+    @apply hidden md:flex md:w-1/2 bg-[var(--color-brand-primary)] relative overflow-hidden flex-col justify-between p-14;
+}
+
+.login-left-bg{
+    @apply absolute inset-0 opacity-25;
+}
+
+.login-left-bg img{
+    @apply w-full h-full object-cover object-top;
+}
+
+.login-left-gradient{
+    @apply absolute inset-0 bg-gradient-to-t from-[var(--color-brand-primary)] via-[var(--color-brand-primary)]/60 to-transparent;
+}
+
+.login-left-logo{
+    @apply relative text-white text-3xl font-black tracking-tight z-10;
+}
+
+.login-left-content{
+    @apply relative z-10;
+}
+
+.login-left-heading{
+    @apply text-white text-6xl font-black leading-tight mb-5;
+}
+
+.login-left-text{
+    @apply text-[var(--color-brand-light)] text-lg max-w-md;
+}
+
+.login-stats{
+    @apply flex gap-10 mt-10;
+}
+
+.login-stat-value{
+    @apply text-white text-3xl font-black;
+}
+
+.login-stat-label{
+    @apply text-[var(--color-brand-light)] text-sm;
+}
+
+/* Right form panel */
+
+.login-right-panel{
+    @apply w-full md:w-1/2 flex items-center justify-center px-6 sm:px-14 lg:px-28 py-14 bg-white;
+}
+
+.login-form-wrap{
+    @apply w-full max-w-2xl;
+}
+
+.login-mobile-logo{
+    @apply md:hidden text-2xl font-black tracking-tight mb-10 text-[var(--color-brand-primary)];
+}
+
+.login-title{
+    @apply text-5xl font-black mb-3 text-[var(--color-brand-primary)];
+}
+
+.login-subtitle{
+    @apply text-gray-500 text-lg mb-12;
+}
+
+.login-form{
+    @apply flex flex-col gap-7;
+}
+
+.login-label{
+    @apply block text-base font-semibold mb-2.5 text-gray-800;
+}
+
+.login-input-wrap{
+    @apply relative;
+}
+
+.login-input-icon{
+    @apply absolute left-5 top-1/2 -translate-y-1/2 text-[var(--color-brand-secondary)] text-xl;
+}
+
+.login-input{
+    @apply w-full bg-gray-50 border border-gray-200 rounded-2xl pl-14 pr-5 py-5 text-lg outline-none focus:ring-2 focus:ring-[var(--color-brand-secondary)] focus:border-[var(--color-brand-secondary)] transition-all;
+}
+
+.login-input-has-toggle{
+    @apply pr-14;
+}
+
+.login-toggle-password{
+    @apply absolute right-5 top-1/2 -translate-y-1/2 text-lg bg-transparent border-none cursor-pointer p-0 leading-none opacity-70 hover:opacity-100 transition-opacity;
+}
+
+.login-input.error{
+    @apply ring-2 ring-red-400 border-red-400;
+}
+
+.login-error{
+    @apply text-sm text-red-500 mt-2;
+}
+
+.login-options-row{
+    @apply flex items-center justify-between text-base -mt-1;
+}
+
+.login-remember{
+    @apply flex items-center gap-2 cursor-pointer select-none text-gray-700;
+}
+
+.login-remember input{
+    @apply w-4 h-4 accent-[var(--color-brand-primary)] cursor-pointer;
+}
+
+.login-forgot{
+    @apply font-semibold text-[var(--color-brand-primary)] underline cursor-pointer hover:text-[var(--color-brand-secondary)] transition-colors;
+}
+
+.login-submit{
+    @apply w-full bg-[var(--color-brand-secondary)] text-[var(--color-brand-primary)] rounded-full py-5 text-lg font-semibold mt-2 cursor-pointer hover:bg-[var(--color-brand-primary)] hover:text-white active:scale-[0.99] transition-all shadow-lg shadow-[var(--color-brand-primary)]/20 disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100;
+}
+
+.login-error-banner{
+    @apply text-sm text-red-500 text-center -mt-2;
+}
+
+.login-footer{
+    @apply text-base text-gray-500 text-center mt-8;
+}
+
+.login-footer a{
+    @apply font-semibold text-[var(--color-brand-primary)] underline hover:text-[var(--color-brand-secondary)] transition-colors;
+}

@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #14213D;
+  --color-brand-secondary: #FCA311;
+  --color-brand-light: #E5E5E5;
+  --color-brand-tint: #E5E5E5;
+}
+
+.signup-page{
+    @apply min-h-screen bg-white flex;
+}
+
+/* Left branded panel */
+
+.signup-left-panel{
+    @apply hidden md:flex md:w-1/2 bg-[var(--color-brand-primary)] relative overflow-hidden flex-col justify-between p-14;
+}
+
+.signup-left-bg{
+    @apply absolute inset-0 opacity-25;
+}
+
+.signup-left-bg img{
+    @apply w-full h-full object-cover object-top;
+}
+
+.signup-left-gradient{
+    @apply absolute inset-0 bg-gradient-to-t from-[var(--color-brand-primary)] via-[var(--color-brand-primary)]/60 to-transparent;
+}
+
+.signup-left-logo{
+    @apply relative text-white text-3xl font-black tracking-tight z-10;
+}
+
+.signup-left-content{
+    @apply relative z-10;
+}
+
+.signup-left-heading{
+    @apply text-white text-6xl font-black leading-tight mb-5;
+}
+
+.signup-left-text{
+    @apply text-[var(--color-brand-light)] text-lg max-w-md;
+}
+
+.signup-stats{
+    @apply flex gap-10 mt-10;
+}
+
+.signup-stat-value{
+    @apply text-white text-3xl font-black;
+}
+
+.signup-stat-label{
+    @apply text-[var(--color-brand-light)] text-sm;
+}
+
+/* Right form panel */
+
+.signup-right-panel{
+    @apply w-full md:w-1/2 flex items-center justify-center px-6 sm:px-14 lg:px-28 py-14 bg-white;
+}
+
+.signup-form-wrap{
+    @apply w-full max-w-2xl;
+}
+
+.signup-mobile-logo{
+    @apply md:hidden text-2xl font-black tracking-tight mb-10 text-[var(--color-brand-primary)];
+}
+
+.signup-title{
+    @apply text-5xl font-black mb-3 text-[var(--color-brand-primary)];
+}
+
+.signup-subtitle{
+    @apply text-gray-500 text-lg mb-12;
+}
+
+.signup-highlight{
+    @apply font-bold text-[var(--color-brand-secondary)];
+}
+
+.signup-form{
+    @apply flex flex-col gap-7;
+}
+
+.signup-label{
+    @apply block text-base font-semibold mb-2.5 text-gray-800;
+}
+
+.signup-input-wrap{
+    @apply relative;
+}
+
+.signup-input-icon{
+    @apply absolute left-5 top-1/2 -translate-y-1/2 text-[var(--color-brand-secondary)] text-xl;
+}
+
+.signup-input{
+    @apply w-full bg-gray-50 border border-gray-200 rounded-2xl pl-14 pr-5 py-5 text-lg outline-none focus:ring-2 focus:ring-[var(--color-brand-secondary)] focus:border-[var(--color-brand-secondary)] transition-all;
+}
+
+.signup-input-has-toggle{
+    @apply pr-14;
+}
+
+.signup-toggle-password{
+    @apply absolute right-5 top-1/2 -translate-y-1/2 text-lg bg-transparent border-none cursor-pointer p-0 leading-none opacity-70 hover:opacity-100 transition-opacity;
+}
+
+.signup-input.error{
+    @apply ring-2 ring-red-400 border-red-400;
+}
+
+.signup-error{
+    @apply text-sm text-red-500 mt-2;
+}
+
+.signup-submit{
+    @apply w-full bg-[var(--color-brand-secondary)] text-[var(--color-brand-primary)] rounded-full py-5 text-lg font-semibold mt-4 cursor-pointer hover:bg-[var(--color-brand-primary)] hover:text-white active:scale-[0.99] transition-all shadow-lg shadow-[var(--color-brand-primary)]/20 disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100;
+}
+
+.signup-footer{
+    @apply text-base text-gray-500 text-center mt-8;
+}
+
+.signup-footer a{
+    @apply font-semibold text-[var(--color-brand-primary)] underline hover:text-[var(--color-brand-secondary)];
+}

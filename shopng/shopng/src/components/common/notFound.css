@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #14213D;
+  --color-brand-secondary: #FCA311;
+}
+
+.nf-page{
+    @apply min-h-screen bg-white flex flex-col;
+}
+
+.nf-topbar{
+    @apply px-4 md:px-8 py-4 border-b border-gray-200;
+}
+
+.nf-logo{
+    @apply inline-flex no-underline;
+}
+
+.nf-logo-img{
+    @apply h-6 md:h-7 w-auto;
+}
+
+.nf-content{
+    @apply flex-1 flex flex-col items-center justify-center text-center px-4 py-16;
+}
+
+.nf-code{
+    @apply text-7xl md:text-9xl font-black text-[var(--color-brand-secondary)] leading-none mb-2;
+}
+
+.nf-title{
+    @apply text-2xl md:text-3xl font-black text-[var(--color-brand-primary)] mb-3;
+}
+
+.nf-subtitle{
+    @apply text-sm md:text-base text-gray-500 max-w-md mb-8;
+}
+
+.nf-actions{
+    @apply flex flex-wrap items-center justify-center gap-3;
+}
+
+.nf-home-btn{
+    @apply bg-[var(--color-brand-secondary)] text-[var(--color-brand-primary)] font-semibold rounded-full px-8 py-3 hover:bg-[var(--color-brand-primary)] hover:text-white transition-all shadow-md no-underline;
+}
